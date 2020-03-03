@@ -213,6 +213,7 @@ The sampling class provided is a low level block sampler the reads an entire blo
 - `glm::i64vec4`
 - `glm::vec4`
 - `glm::dvec4`
+
 The format sample is expanded to the closest matching type, like how a texture would be sampled in a shader.
 ```
 #include <gpufmt/sampler.h>
@@ -245,7 +246,7 @@ std::vector<gpufmt::byte> decompressor.decompress(compressedSurface, error);
 No other compilers have been tested, but there's no reason why they shouldn't work. I am more than happy integrate changes that provide compatibility for other compilers.
 
 ### Building
-- If you **do not need** to read compressed formats (ASTC, BC, ETC, EAC, or PVRTC) formats
+- If you **do not need** to read compressed formats (ASTC, BC, ETC, EAC, or PVRTC)
   **gpuformat** can be configured as a header only library. To do so, you need to do the following steps:
   1. Include all the headers except for `astc.h`, `bc.h`, `etc.h`, `pvrtc.h`.
   2. In `config.h`, uncomment `#define GF_EXCLUDE_COMPRESSED_FORMATS`
