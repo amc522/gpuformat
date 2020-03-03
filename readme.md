@@ -37,57 +37,57 @@ There are several different graphics api's out there helping to abstract the gpu
 #### Format Traits
 Format traits are type safe, static constexpr traits of a specific format.
 ```
-#include <gpuformat/traits.h>
+#include <gpufmt/traits.h>
 
 // all values are for the example format R8G8B8A8_UNORM
 
 // size of a single block of data in the texture
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::BlockByteSize; //4 bytes
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::BlockByteSize; //4 bytes
 
 // how many texels in each dimension for a single data block of the texture
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::BlockExtent; // 1, 1, 1
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::BlockExtent; // 1, 1, 1
 
 // number of texels in a single data block (BlockExtent.x * BlockExtent.y * BlockExtent.z)
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::BlockTexelCount; // 1
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::BlockTexelCount; // 1
 
 // number of components the format represents
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::ComponentCount; // 4
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::ComponentCount; // 4
 
 // data type for a single component when sampled
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::ValueType; // float
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::ValueType; // float
 
 // data type for a single sample representing only the number of components available in the format
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::NarrowSampleType; // glm::vec4
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::NarrowSampleType; // glm::vec4
 
 // size of a single narrow sample
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::NarrowSampleByteSize; // 16 bytes
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::NarrowSampleByteSize; // 16 bytes
 
 // size of all the narrow samples in a block
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::NarrowSampleBlockByteSize; // 16 bytes
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::NarrowSampleBlockByteSize; // 16 bytes
 
 // data type for a single sample representing the RGBA channels, even if the format does not have some of those channels
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::WideSampleType; // glm::vec4
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::WideSampleType; // glm::vec4
 
 // size of a single wide sample
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::WideSampleByteSize; // 16 bytes
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::WideSampleByteSize; // 16 bytes
 
 // size of all the wide samples in a block
-gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::WideSampleBlockByteSize; // 16 bytes
+gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::WideSampleBlockByteSize; // 16 bytes
 ```
 
 #### Format Info
 Format info duplicates some of the type safe traits, but also adds a bunch of properties that are available at runtime.
 
-There are two ways to access a format's gpuformat::FormatInfo object
+There are two ways to access a format's gpufmt::FormatInfo object
 1. Access the FormatInfo object directly from the FormatTraits template overload. This can be used for compile time constants.
 ```
-    const gpuformat::FormatInfo &formatInfo = gpuformat::FormatTraits<gpuformat::Format::R8G8B8A8_UNORM>::info;
+    const gpufmt::FormatInfo &formatInfo = gpufmt::FormatTraits<gpufmt::Format::R8G8B8A8_UNORM>::info;
 ```
 2. From the formatInfo function. This can be used for dynamic runtime information.
 ```
-    gpuformat::Format someFormat;
+    gpufmt::Format someFormat;
     ...
-    const gpuformat::FormatInfo &formatInfo = gpuformat::formatInfo(someFormat);
+    const gpufmt::FormatInfo &formatInfo = gpufmt::formatInfo(someFormat);
 ```
 
 Here's all the values in FormatInfo:
@@ -128,33 +128,46 @@ formatInfo.alphaIndex;
 #### Translating Formats
 DirectX11 & DirectX12
 ```
-#include <gpuformat/dxgi.h>
+#include <gpufmt/dxgi.h>
 
-gpuformat::dxgi::FormatConversion dxgiConversion = gpuformat::dxgi::translateFormat(someGpuFormat_Format);
+gpufmt::dxgi::FormatConversion dxgiConversion = gpufmt::dxgi::translateFormat(someGpuFormat_Format);
 
-std::optional<gpuformat::Format> format = gpuformat::dxgi::translateFormat(someDXGIFormat);
+std::optional<gpufmt::Format> format = gpufmt::dxgi::translateFormat(someDXGIFormat);
 ```
 
 OpenGL
 ```
-#include <gpuformat/opengl.h>
+#include <gpufmt/opengl.h>
 
-gpuformat::gl::FormatConversion glConversion = gpuformat::gl::translateFormat(someGpuFormat_Format);
+gpufmt::gl::FormatConversion glConversion = gpufmt::gl::translateFormat(someGpuFormat_Format);
 
-std::optional<gpuformat::Format> format = gpuformat::gl::translateFormat(openglInternalFormat, openglFormat, openglType);
+std::optional<gpufmt::Format> format = gpufmt::gl::translateFormat(openglInternalFormat, openglFormat, openglType);
 ```
 
 Vulkan
 ```
-#include <gpuformat/vulkan.h>
+#include <gpufmt/vulkan.h>
 
-gpuformat::vulkan::FormatConversion vulkanConversion = gpuformat::vulkan::translateFormat(someGpuFormat_Format);
+gpufmt::vulkan::FormatConversion vulkanConversion = gpufmt::vulkan::translateFormat(someGpuFormat_Format);
 
-std::optional<gpuformat::Format> format = gpuformat::vulkan::translateFormat(someVkFormat);
+std::optional<gpufmt::Format> format = gpufmt::vulkan::translateFormat(someVkFormat);
 ```
 
 #### Iterating over Formats
 ```
+#include <gpufmt/utility.h>
+
+// enumerate all formats
+for(gpufmt::Format format : gpufmt::FormatEnumerator())
+{
+  ...
+}
+
+// emumerate a range of formats
+for(gpufmt::Format format : gpufmt::FormatEnumerator<gpufmt::R16_UNORM, gpufmt::R16_SFLOAT>())
+{
+  ...
+}
 ```
 
 #### Loading and Storing
@@ -183,7 +196,7 @@ No other compilers have been tested, but there's no reason why they shouldn't wo
 - If you **want** to read ASTC, BC, ETC, EAC, or PVRTC formats.
   1. Run [premake 5.0](https://premake.github.io/) in the gpuformat directory using the `premake5.lua` file targeting your desired toolset. ex. `premake5.exe vs2019`.
   2. Then build the static libraries with your desired environment.
-  3. Include all of the files in `gpuformat/include` in your project.
+  3. Include all of the files in `gpufmt/include` in your project.
 
 ### TODO
 - Metal and Metal2 support
