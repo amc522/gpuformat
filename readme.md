@@ -172,7 +172,7 @@ for(gpufmt::Format format : gpufmt::FormatEnumerator<gpufmt::R16_UNORM, gpufmt::
 ```
 
 #### Loading Texture Blocks
-***gpuformat*** provides the base functions for loading (reading) texture blocks. Load functions will take a single texture block and output an array of texels equal to the number texels in a single block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to load texels. Not all formats can be read one block at a time. Some can only be fully decompressed. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
+**gpuformat** provides the base functions for loading (reading) texture blocks. Load functions will take a single texture block and output an array of texels equal to the number texels in a single block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to load texels. Not all formats can be read one block at a time. Some can only be fully decompressed. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
 ```
 #include <gpufmt/storage.h>
 
@@ -189,7 +189,7 @@ if constexpr (gpufmt::FormatStorage<R8_UNORM>::Readable)
 ```
 
 #### Storing Texture Blocks
-***gpuformat*** provides the base functions for storing (writing) texture blocks. Store functions will take an array of texels (equal to the number in a block) and output exactly one texture block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to store texels. Not all formats can be written. This includes any compressed format. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
+**gpuformat** provides the base functions for storing (writing) texture blocks. Store functions will take an array of texels (equal to the number in a block) and output exactly one texture block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to store texels. Not all formats can be written. This includes any compressed format. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
 ```
 #include <gpufmt/storage.h>
 
