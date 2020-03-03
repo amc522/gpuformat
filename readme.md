@@ -7,7 +7,8 @@
   - [Format Traits](#format-traits)
   - [Translating Formats](#translating-formats)
   - [Iterating over Formats](#iterating-over-formats)
-  - [Loading and Storing](#loading-and-storing)
+  - [Loading Texture Blocks](#loading-texture-blocks)
+  - [Storing Texture Blocks](#storing-texture-blocks)
   - [Sampling](#sampling)
   - [Decompressing](#decompressing)
 - [Building](#building)
@@ -170,16 +171,71 @@ for(gpufmt::Format format : gpufmt::FormatEnumerator<gpufmt::R16_UNORM, gpufmt::
 }
 ```
 
-#### Loading and Storing
+#### Loading Texture Blocks
+***gpuformat*** provides the base functions for loading (reading) texture blocks. Load functions will take a single texture block and output an array of texels equal to the number texels in a single block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to load texels. Not all formats can be read one block at a time. Some can only be fully decompressed. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
 ```
+#include <gpufmt/storage.h>
+
+// optional if constexpr
+if constexpr (gpufmt::FormatStorage<R8_UNORM>::Readable)
+{
+  uint8 r8Block = 127;
+  glm::float4 texel;
+  gpufmt::FormatStorage<gpufmt::R8_UNORM>::loadBlock(r8Block, texel);
+
+  //texel == 0.4980392158031463623046875
+}
+
+```
+
+#### Storing Texture Blocks
+***gpuformat*** provides the base functions for storing (writing) texture blocks. Store functions will take an array of texels (equal to the number in a block) and output exactly one texture block. For most uncompressed textures, this will be 1 texel. Each format has a `FormatStorage` class to store texels. Not all formats can be written. This includes any compressed format. Every `FormatStorage` class has static boolean members `Writeable`, `Readable`, `Decompressible` and can be used to check if the corresponding functions are available.
+```
+#include <gpufmt/storage.h>
+
+// optional if constexpr
+if constexpr (gpufmt::FormatStorage<R8_UNORM>::Writeable)
+{
+  uint8 r8Block;
+  glm::float4 texel = 0.4980392158031463623046875;
+  gpufmt::FormatStorage<gpufmt::R8_UNORM>::loadBlock(gpufmt::span<glm::float4, 1>(&texel, 1), r8Block);
+
+  //r8Block == 127
+}
+
 ```
 
 #### Sampling
+The sampling class provided is a low level block sampler the reads an entire block. This class can be used as the building blocks for a more complicated sampler. The block can output as an array of bytes representing the decompressed texels of a block or as an array of `gpufmt::SampleVariant`. `SampleVariant` is a variant type wrapping the following types:
+- `glm::u32vec4`
+- `glm::i32vec4`
+- `glm::u64vec4`
+- `glm::i64vec4`
+- `glm::vec4`
+- `glm::dvec4`
+The format sample is expanded to the closest matching type, like how a texture would be sampled in a shader.
 ```
+#include <gpufmt/sampler.h>
+
+gpufmt::Format someFormat;
+...
+gpufmt::BlockSampler sampler{someFormat};
+
+gpufmt::Extent bloxelToSample{244, 12, 0};
+gpufmt::BlockSampleError error;
+std::vector<gpufmt::SampleVariant> samples = sampler.variantSample(surface, bloxelToSample, error);
 ```
 
 #### Decompressing
+The decompressor class will decompressed an entire texture surface to its decompressed format. If the format cannot be decompressed or is not a compressed format, the decompress functions will return an error.
 ```
+#include <gpufmt/decompress.h>
+
+gpufmt::Format someFormat;
+...
+gpufmt::Decompressor decompressor{someFormat};
+gpufmt::DecompressError error;
+std::vector<gpufmt::byte> decompressor.decompress(compressedSurface, error);
 ```
 
 ### Supported Compilers
