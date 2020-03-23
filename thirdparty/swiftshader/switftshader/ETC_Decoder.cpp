@@ -61,7 +61,7 @@ namespace
 
 		const bgra8& addA(int alpha)
 		{
-			a = alpha;
+			a = static_cast<unsigned char>(clampByte(alpha));
 			return *this;
 		}
 	};
@@ -117,7 +117,7 @@ namespace
 						{
 							for(int c = nbChannels - 1; c >= 0; c--)
 							{
-								sDst[i * nbChannels + c] = clampSByte(sources[c]->getSingleChannel(i, j, isSigned, false));
+								sDst[i * nbChannels + c] = static_cast<signed char>(clampSByte(sources[c]->getSingleChannel(i, j, isSigned, false)));
 							}
 						}
 						sDst += pitch;
@@ -131,7 +131,7 @@ namespace
 						{
 							for(int c = nbChannels - 1; c >= 0; c--)
 							{
-								dest[i * nbChannels + c] = clampByte(sources[c]->getSingleChannel(i, j, isSigned, false));
+								dest[i * nbChannels + c] = static_cast<unsigned char>(clampByte(sources[c]->getSingleChannel(i, j, isSigned, false)));
 							}
 						}
 						dest += pitch;

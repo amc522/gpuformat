@@ -911,31 +911,31 @@ namespace gpufmt::gl {
             return gpufmt::gl::Format{ internalFormat };
         case GL_COMPRESSED_SIGNED_RG11_EAC:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_ETC1_RGB8_OES):
+        case GL_ETC1_RGB8_OES:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG:
             return gpufmt::gl::Format{ internalFormat };
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG:
             return gpufmt::gl::Format{ internalFormat };
         default:
             return std::nullopt;
@@ -1117,31 +1117,31 @@ namespace gpufmt::gl {
             return GL_RG16;
         case GL_COMPRESSED_SIGNED_RG11_EAC:
             return GL_RG16_SNORM;
-        case static_cast<GLenum>(GL_ETC1_RGB8_OES):
+        case GL_ETC1_RGB8_OES:
             return GL_RGB8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG:
             return GL_RGB8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG:
             return GL_RGB8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG:
             return GL_RGBA8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG:
             return GL_RGBA8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG:
             return GL_RGBA8;
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG:
             return GL_RGBA8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT:
             return GL_SRGB8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT:
             return GL_SRGB8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT:
             return GL_SRGB8_ALPHA8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT:
             return GL_SRGB8_ALPHA8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG:
             return GL_SRGB8_ALPHA8;
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG:
             return GL_SRGB8_ALPHA8;
         default:
             return GL_NONE;
@@ -1152,7 +1152,7 @@ namespace gpufmt::gl {
     static constexpr std::string_view internalFormatString(GLenum internalFormat) noexcept {
         switch(internalFormat)
         {
-        case static_cast<GLenum>(GL_ALPHA8_EXT):
+        case GL_ALPHA8_EXT:
             return "GL_ALPHA8_EXT";
         case GL_ALPHA8_SNORM:
             return "GL_ALPHA8_SNORM";
@@ -1394,29 +1394,29 @@ namespace gpufmt::gl {
             return "GL_COMPRESSED_RGBA_ASTC_12x12_KHR";
         case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:
             return "GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR";
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG:
             return "GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG:
             return "GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG:
             return "GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG:
             return "GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG:
             return "GL_COMPRESSED_RGBA_PVRTC_2BPPV2_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG:
             return "GL_COMPRESSED_RGBA_PVRTC_4BPPV2_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT:
             return "GL_COMPRESSED_SRGB_PVRTC_2BPPV1_EXT";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT:
             return "GL_COMPRESSED_SRGB_PVRTC_4BPPV1_EXT";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT:
             return "GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV1_EXT";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT:
             return "GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV1_EXT";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG:
             return "GL_COMPRESSED_SRGB_ALPHA_PVRTC_2BPPV2_IMG";
-        case static_cast<GLenum>(GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG):
+        case GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG:
             return "GL_COMPRESSED_SRGB_ALPHA_PVRTC_4BPPV2_IMG";
         case 0:
             return "0";

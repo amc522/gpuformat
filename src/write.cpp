@@ -9,6 +9,8 @@ namespace gpufmt {
     namespace internal {
         class BaseWriter {
         public:
+            virtual ~BaseWriter() = default;
+
             [[nodiscard]]
             virtual std::vector<gpufmt::byte> write(const gpufmt::SampleVariant &variant, WriteError &error) noexcept = 0;
 
@@ -21,6 +23,8 @@ namespace gpufmt {
         public:
             using Storage = gpufmt::FormatStorage<FormatV>;
             using Traits = gpufmt::FormatTraits<FormatV>;
+
+            ~WriterT() final = default;
 
             [[nodiscard]]
             std::vector<gpufmt::byte> write([[maybe_unused]] const gpufmt::SampleVariant &variant, WriteError &error) noexcept override {
