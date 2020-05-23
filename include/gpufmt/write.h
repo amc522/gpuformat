@@ -5,6 +5,7 @@
 #include <gpufmt/format.h>
 #include <gpufmt/internal/sample_variant.h>
 
+#include <memory>
 #include <vector>
 
 namespace gpufmt {

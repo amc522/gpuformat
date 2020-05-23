@@ -2,6 +2,8 @@
 
 #include <gpufmt/config.h>
 
+#include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <type_traits>
 

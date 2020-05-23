@@ -4,6 +4,7 @@
 #include <gpufmt/definitions.h>
 #include <gpufmt/format.h>
 
+#include <memory>
 #include <vector>
 
 namespace gpufmt {
