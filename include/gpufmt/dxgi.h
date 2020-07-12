@@ -813,6 +813,7 @@ namespace gpufmt::dxgi {
 
         switch(dxgiFormat) {
         case DXGI_FORMAT_UNKNOWN:
+            format = gpufmt::Format::UNDEFINED;
             break;
         case DXGI_FORMAT_R32G32B32A32_TYPELESS:
             break;
@@ -1184,6 +1185,61 @@ namespace gpufmt::dxgi {
         }
 
         return stencilView;
+    }
+
+    [[nodiscard]]
+    static constexpr bool isTypelessFormat(DXGI_FORMAT format) noexcept {
+        switch(format)
+        {
+        case DXGI_FORMAT_R32G32B32A32_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R32G32B32_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R16G16B16A16_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R32G32_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R32G8X24_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R10G10B10A2_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R8G8B8A8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R16G16_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R32_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R24G8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R8G8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R16_TYPELESS:
+            return true;
+        case DXGI_FORMAT_R8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC1_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC2_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC3_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC4_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC5_TYPELESS:
+            return true;
+        case DXGI_FORMAT_B8G8R8A8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_B8G8R8X8_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC6H_TYPELESS:
+            return true;
+        case DXGI_FORMAT_BC7_TYPELESS:
+            return true;
+        default:
+            return false;
+        }
     }
 
     [[nodiscard]]
