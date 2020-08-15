@@ -2,6 +2,8 @@
 #include <gpufmt/traits.h>
 #include <gpufmt/storage.h>
 
+#include <iterator>
+
 namespace gpufmt {
     namespace internal {
         template<gpufmt::Format FormatV>
