@@ -2,6 +2,8 @@
 
 #include <gpufmt/internal/packing_common.h>
 
+#include <cmath>
+
 namespace gpufmt::internal {
     template<class T, size_t BitCount, size_t Offset>
     [[nodiscard]]
@@ -43,7 +45,7 @@ namespace gpufmt::internal {
         static constexpr float scaleFactor = scaleFactorSNorm<BitCount>();
         static constexpr T mask = bitMask<T, BitCount>();
         
-        const SignedT scaledValue = static_cast<SignedT>(std::roundf((std::clamp(value, -1.0f, 1.0f)) * scaleFactor));
+        const SignedT scaledValue = static_cast<SignedT>(std::round((std::clamp(value, -1.0f, 1.0f)) * scaleFactor));
         return packSignedInt<SignedT, BitCount>(scaledValue) << Offset;
     }
 

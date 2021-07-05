@@ -68,7 +68,7 @@ namespace gpufmt {
         BlockSampler &operator=(BlockSampler &&other) noexcept;
 
         [[nodiscard]]
-        gpufmt::Format BlockSampler::format() const noexcept;
+        gpufmt::Format format() const noexcept;
         [[nodiscard]]
         const Extent &blockExtent() const noexcept;
 

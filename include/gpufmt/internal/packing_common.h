@@ -1,8 +1,10 @@
 #pragma once
 
+#include <algorithm>
 #include <cstdint>
 #include <intrin.h>
 #include <immintrin.h>
+#include <limits>
 #include <type_traits>
 
 namespace gpufmt::internal {

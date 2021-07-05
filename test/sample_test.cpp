@@ -17,8 +17,8 @@ TEST_CASE("BlockSampler") {
     std::vector<float> expectedSample{ 1.0f / 255.0f, 2.0f / 255.0f, 3.0f / 255.0f, 1.0f };
     gpufmt::span<gpufmt::byte> expectedSampleSpan(reinterpret_cast<gpufmt::byte*>(expectedSample.data()), expectedSample.size() * sizeof(float));
 
-    CHECK(std::equal(wideSample.cbegin(), wideSample.cend(), expectedSampleSpan.cbegin()));
+    CHECK(std::equal(wideSample.begin(), wideSample.end(), expectedSampleSpan.begin()));
 
     auto narrowSample = sampler.narrowSample(surface, { 0, 0, 0 }, error);
-    CHECK(std::equal(narrowSample.cbegin(), narrowSample.cend(), expectedSampleSpan.cbegin()));
+    CHECK(std::equal(narrowSample.begin(), narrowSample.end(), expectedSampleSpan.begin()));
 }

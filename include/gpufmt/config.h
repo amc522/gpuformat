@@ -1,6 +1,15 @@
 #pragma once
 
-#if __has_include(<span>)
+#include <array>
+#include <version>
+
+#ifdef _MSVC_LANG
+#define GF_CPP_VERSION _MSVC_LANG
+#else
+#define GF_CPP_VERSION __cplusplus
+#endif
+
+#if defined(__cpp_lib_span) && GF_CPP_VERSION >= __cpp_lib_span
 #include <span>
 
 namespace gpufmt {

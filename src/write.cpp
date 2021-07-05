@@ -52,7 +52,7 @@ namespace gpufmt {
                     std::visit([dest](const auto &sample) {
                         auto destSample = static_cast<Traits::WideSampleType>(sample);
 
-                        Traits::BlockType &destBlock = reinterpret_cast<Traits::BlockType &>(*dest.data());
+                        typename Traits::BlockType &destBlock = reinterpret_cast<Traits::BlockType &>(*dest.data());
                         destBlock = Storage::storeBlock(gpufmt::span<Traits::WideSampleType, 1>(&destSample, 1));
                     }, variant);
 
