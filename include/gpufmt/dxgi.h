@@ -173,6 +173,7 @@ namespace gpufmt::dxgi {
         switch(format)
         {
         case gpufmt::Format::UNDEFINED:
+            conversion.exact = DXGI_FORMAT_UNKNOWN;
             break;
         case gpufmt::Format::R4G4_UNORM_PACK8:
             conversion.closest = DXGI_FORMAT_B4G4R4A4_UNORM;

@@ -15,10 +15,19 @@ namespace gpufmt {
             constexpr std::pair<gpufmt::SampleVariant, gpufmt::SampleVariant> operator()() const noexcept {
                 const auto lowest = FormatLimits<FormatV>::lowest();
                 const auto maximum = FormatLimits<FormatV>::max();
-
+                
                 const Traits::WideSampleType lowestVec{ lowest, lowest, lowest, lowest };
                 const Traits::WideSampleType maxVec{ maximum, maximum, maximum, maximum };
                 return std::make_pair(lowestVec, maxVec);
+            }
+        };
+
+        template<>
+        class SampleRangeHelper<Format::UNDEFINED> {
+        public:
+            [[nodiscard]]
+            constexpr std::pair<gpufmt::SampleVariant, gpufmt::SampleVariant> operator()() const noexcept {
+                return std::make_pair(glm::vec4(0.0f, 0.0f, 0.0f, 0.0f), glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
             }
         };
 

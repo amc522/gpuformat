@@ -22,6 +22,15 @@ namespace gpufmt {
             static constexpr size_t BlockTexelCount = BlockExtent.x * BlockExtent.y * BlockExtent.z;
         };
 
+        template<>
+        class FormatBlockTraits<void, 0, 0, 0> {
+        public:
+            using BlockType = void;
+            static constexpr size_t BlockByteSize = 0;
+            static constexpr Extent BlockExtent = { 0, 0, 0 };
+            static constexpr size_t BlockTexelCount = 0;
+        };
+
         template<class T, size_t ComponentCountV>
         class FormatSampleTraits {
         public:
@@ -31,6 +40,7 @@ namespace gpufmt {
                           std::is_same_v<T, uint64_t> ||
                           std::is_same_v<T, int64_t> ||
                           std::is_same_v<T, double>);
+
             static_assert(ComponentCountV > 0 && ComponentCountV <= 4);
 
             using ValueType = T;
@@ -43,6 +53,21 @@ namespace gpufmt {
             static constexpr size_t WideSampleByteSize = sizeof(WideSampleType);
 
             static constexpr bool NarrowIsWide = std::is_same_v<NarrowSampleType, WideSampleType>;
+        };
+
+        template<>
+        class FormatSampleTraits<void, 0> {
+        public:
+            using ValueType = void;
+            static constexpr size_t ComponentCount = 0;
+
+            using NarrowSampleType = void;
+            static constexpr size_t NarrowSampleByteSize = 0;
+
+            using WideSampleType = void;
+            static constexpr size_t WideSampleByteSize = 0;
+
+            static constexpr bool NarrowIsWide = true;
         };
 
         template<class T>
@@ -72,6 +97,13 @@ namespace gpufmt {
         public:
             static constexpr size_t NarrowSampleBlockByteSize = sizeof(typename BaseFormatTraits::NarrowSampleType) * BaseFormatTraits::BlockTexelCount;
             static constexpr size_t WideSampleBlockByteSize = sizeof(typename BaseFormatTraits::WideSampleType) * BaseFormatTraits::BlockTexelCount;
+        };
+
+        template<>
+        class BaseFormatTraits<void, 0, 0, 0, void, 0> : public FormatBlockTraits<void, 0, 0, 0>, public FormatSampleTraits<void, 0> {
+        public:
+            static constexpr size_t NarrowSampleBlockByteSize = 0;
+            static constexpr size_t WideSampleBlockByteSize = 0;
         };
     }
 
