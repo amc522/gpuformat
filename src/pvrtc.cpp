@@ -3,9 +3,7 @@
 #if !defined(GF_EXCLUDE_COMPRESSED_FORMATS) && !defined(GF_EXCLUDE_PVRTC_COMPRESSED_FORMATS)
 
 #include "gpufmt/definitions.h"
-#include "gpufmt/internal/byte_packing.h"
 
-#include <glm/gtc/type_precision.hpp>
 #include <PowerVR/PVRTDecompress.h>
 
 #include <array>

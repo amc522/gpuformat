@@ -5,9 +5,7 @@
 
 #if !defined(GF_EXCLUDE_COMPRESSED_FORMATS) && !defined(GF_EXCLUDE_ETC_COMPRESSED_FORMATS)
 
-#include <glm/gtc/type_precision.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
+#include <glm/fwd.hpp>
 
 #include <cstdint>
 

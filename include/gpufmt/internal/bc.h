@@ -4,9 +4,7 @@
 
 #if !defined(GF_EXCLUDE_COMPRESSED_FORMATS) && !defined(GF_EXCLUDE_BC_COMPRESSED_FORMATS)
 
-#include <glm/vec4.hpp>
-#include <glm/gtc/packing.hpp>
-
+#include <glm/fwd.hpp>
 #include <array>
 
 namespace gpufmt {

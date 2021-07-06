@@ -2,8 +2,8 @@
 
 #include <gpufmt/config.h>
 
+#include <glm/fwd.hpp>
 #include <glm/vec4.hpp>
-#include <glm/gtc/type_precision.hpp>
 
 #include <variant>
 

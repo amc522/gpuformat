@@ -30,7 +30,6 @@
 #endif
 
 #include <glm/gtc/packing.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vec_swizzle.hpp>
 #include <glm/vec4.hpp>
 #include <glm/vec3.hpp>
