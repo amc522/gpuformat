@@ -79,7 +79,7 @@ workspace "gpufmt"
             "../../thirdparty/astc_dec",
             "../../thirdparty/DirectXTex",
             "../../thirdparty/gl",
-            "../../thirdparty/glm/include",
+            "../../thirdparty/glm",
             "../../thirdparty/khr",
             "../../thirdparty/PowerVR_SDK",
             "../../thirdparty/span/include",
@@ -108,7 +108,7 @@ workspace "gpufmt"
             "../../include",
             "../../thirdparty/catch2",
             "../../thirdparty/gl",
-            "../../thirdparty/glm/include",
+            "../../thirdparty/glm",
             "../../thirdparty/khr",
             "../../thirdparty/span/include",
         }
