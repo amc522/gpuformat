@@ -34,36 +34,36 @@ namespace gpufmt::internal {
     }
 
     [[nodiscard]]
-    constexpr void singleChannelBitmapDataUNorm(uint8_t channel0, uint8_t channel1, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint64_t &contiguousBitmap) noexcept {
+    constexpr void singleChannelBitmapDataUNorm(uint8_t channel0, uint8_t channel1, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint32_t &contiguousBitmap) noexcept {
         lut[0] = channel0 / 255.0f;
         lut[1] = channel1 / 255.0f;
 
         createSingleChannelLUT(channel0 > channel1, 0.0f, lut);
 
-        contiguousBitmap = static_cast<uint64_t>(channelBitmap[0]) | (static_cast<uint64_t>(channelBitmap[1]) << 8) | (static_cast<uint64_t>(channelBitmap[2]) << 16);
-        contiguousBitmap |= (static_cast<uint64_t>(channelBitmap[3]) | (static_cast<uint64_t>(channelBitmap[4]) << 8) | (static_cast<uint64_t>(channelBitmap[5]) << 16)) << 24;
+        contiguousBitmap = static_cast<uint32_t>(channelBitmap[0]) | (static_cast<uint32_t>(channelBitmap[1]) << 8) | (static_cast<uint32_t>(channelBitmap[2]) << 16);
+        contiguousBitmap |= (static_cast<uint32_t>(channelBitmap[3]) | (static_cast<uint32_t>(channelBitmap[4]) << 8) | (static_cast<uint32_t>(channelBitmap[5]) << 16)) << 24;
     }
 
     [[nodiscard]]
-    constexpr void singleChannelBitmapDataSNorm(uint8_t channel0, uint8_t channel1, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint64_t &contiguousBitmap) noexcept {
+    constexpr void singleChannelBitmapDataSNorm(uint8_t channel0, uint8_t channel1, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint32_t &contiguousBitmap) noexcept {
         lut[0] = (channel0 / 255.0f) * 2.0f - 1.0f;
         lut[1] = (channel1 / 255.0f) * 2.0f - 1.0f;
 
         createSingleChannelLUT(channel0 > channel1, -1.0f, lut);
 
-        contiguousBitmap = static_cast<uint64_t>(channelBitmap[0]) | (static_cast<uint64_t>(channelBitmap[1]) << 8) | (static_cast<uint64_t>(channelBitmap[2]) << 16);
-        contiguousBitmap |= (static_cast<uint64_t>(channelBitmap[3]) | (static_cast<uint64_t>(channelBitmap[4]) << 8) | (static_cast<uint64_t>(channelBitmap[5]) << 16)) << 24;
+        contiguousBitmap = static_cast<uint32_t>(channelBitmap[0]) | (static_cast<uint32_t>(channelBitmap[1]) << 8) | (static_cast<uint32_t>(channelBitmap[2]) << 16);
+        contiguousBitmap |= (static_cast<uint32_t>(channelBitmap[3]) | (static_cast<uint32_t>(channelBitmap[4]) << 8) | (static_cast<uint32_t>(channelBitmap[5]) << 16)) << 24;
     }
 
     [[nodiscard]]
-    constexpr void singleChannelBitmapDataSNorm(uint8_t channel0, uint32_t channel1, bool interpolate6, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint64_t &contiguousBitmap) noexcept {
+    constexpr void singleChannelBitmapDataSNorm(uint8_t channel0, uint32_t channel1, bool interpolate6, const std::array<uint8_t, 6> &channelBitmap, std::array<float, 8> &lut, uint32_t &contiguousBitmap) noexcept {
         lut[0] = (channel0 / 255.0f) * 2.0f - 1.0f;
         lut[1] = (channel1 / 255.0f) * 2.0f - 1.0f;
 
         createSingleChannelLUT(interpolate6, -1.0f, lut);
 
-        contiguousBitmap = static_cast<uint64_t>(channelBitmap[0]) | (static_cast<uint64_t>(channelBitmap[1]) << 8) | (static_cast<uint64_t>(channelBitmap[2]) << 16);
-        contiguousBitmap |= (static_cast<uint64_t>(channelBitmap[3]) | (static_cast<uint64_t>(channelBitmap[4]) << 8) | (static_cast<uint64_t>(channelBitmap[5]) << 16)) << 24;
+        contiguousBitmap = static_cast<uint32_t>(channelBitmap[0]) | (static_cast<uint32_t>(channelBitmap[1]) << 8) | (static_cast<uint32_t>(channelBitmap[2]) << 16);
+        contiguousBitmap |= (static_cast<uint32_t>(channelBitmap[3]) | (static_cast<uint32_t>(channelBitmap[4]) << 8) | (static_cast<uint32_t>(channelBitmap[5]) << 16)) << 24;
     }
 
 #if defined(GF_COMPILER_MSVC)
@@ -167,9 +167,9 @@ namespace gpufmt::internal {
             alpha[7] = 1.0f;
         }
 
-        uint64_t bitmap;
-        bitmap = static_cast<uint64_t>(block.alphaBitmap[0]) | (static_cast<uint64_t>(block.alphaBitmap[1]) << 8) | (static_cast<uint64_t>(block.alphaBitmap[2]) << 16);
-        bitmap |= (static_cast<uint64_t>(block.alphaBitmap[3]) | (static_cast<uint64_t>(block.alphaBitmap[4]) << 8) | (static_cast<uint64_t>(block.alphaBitmap[5]) << 16)) << 24;
+        uint32_t bitmap;
+        bitmap = static_cast<uint32_t>(block.alphaBitmap[0]) | (static_cast<uint32_t>(block.alphaBitmap[1]) << 8) | (static_cast<uint32_t>(block.alphaBitmap[2]) << 16);
+        bitmap |= (static_cast<uint32_t>(block.alphaBitmap[3]) | (static_cast<uint32_t>(block.alphaBitmap[4]) << 8) | (static_cast<uint32_t>(block.alphaBitmap[5]) << 16)) << 24;
 
         for(uint8_t row = 0; row < 4; ++row) {
             for(uint8_t column = 0; column < 4; ++column) {
@@ -183,7 +183,7 @@ namespace gpufmt::internal {
 
     void decompressBC4Block_UNorm1(const BC4Block &block, gpufmt::span<float, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t bitmap;
+        uint32_t bitmap;
 
         singleChannelBitmapDataUNorm(block.red0, block.red1, block.bitmap, redLUT, bitmap);
 
@@ -198,7 +198,7 @@ namespace gpufmt::internal {
 
     void decompressBC4Block_UNorm4(const BC4Block &block, gpufmt::span<glm::vec4, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t bitmap;
+        uint32_t bitmap;
 
         singleChannelBitmapDataUNorm(block.red0, block.red1, block.bitmap, redLUT, bitmap);
 
@@ -213,7 +213,7 @@ namespace gpufmt::internal {
 
     void decompressBC4Block_SNorm1(const BC4Block &block, gpufmt::span<float, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t bitmap;
+        uint32_t bitmap;
 
         singleChannelBitmapDataSNorm(block.red0, block.red1, block.bitmap, redLUT, bitmap);
 
@@ -228,7 +228,7 @@ namespace gpufmt::internal {
 
     void decompressBC4Block_SNorm4(const BC4Block &block, gpufmt::span<glm::vec4, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t bitmap;
+        uint32_t bitmap;
 
         singleChannelBitmapDataSNorm(block.red0, block.red1, block.bitmap, redLUT, bitmap);
 
@@ -243,12 +243,12 @@ namespace gpufmt::internal {
 
     void decompressBC5Block_UNorm2(const BC5Block &block, gpufmt::span<glm::vec2, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t redBitmap;
+        uint32_t redBitmap;
 
         singleChannelBitmapDataUNorm(block.red0, block.red1, block.redBitmap, redLUT, redBitmap);
 
         std::array<float, 8> greenLUT;
-        uint64_t greenBitmap;
+        uint32_t greenBitmap;
 
         singleChannelBitmapDataUNorm(block.green0, block.green1, block.greenBitmap, greenLUT, greenBitmap);
 
@@ -264,12 +264,12 @@ namespace gpufmt::internal {
 
     void decompressBC5Block_UNorm4(const BC5Block &block, gpufmt::span<glm::vec4, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t redBitmap;
+        uint32_t redBitmap;
 
         singleChannelBitmapDataUNorm(block.red0, block.red1, block.redBitmap, redLUT, redBitmap);
 
         std::array<float, 8> greenLUT;
-        uint64_t greenBitmap;
+        uint32_t greenBitmap;
 
         singleChannelBitmapDataUNorm(block.green0, block.green1, block.greenBitmap, greenLUT, greenBitmap);
 
@@ -285,12 +285,12 @@ namespace gpufmt::internal {
 
     void decompressBC5Block_SNorm2(const BC5Block &block, gpufmt::span<glm::vec2, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t redBitmap;
+        uint32_t redBitmap;
 
         singleChannelBitmapDataSNorm(block.red0, block.red1, block.redBitmap, redLUT, redBitmap);
 
         std::array<float, 8> greenLUT;
-        uint64_t greenBitmap;
+        uint32_t greenBitmap;
 
         singleChannelBitmapDataSNorm(block.green0, block.green1, block.red0 > block.red1, block.greenBitmap, greenLUT, greenBitmap);
 
@@ -306,12 +306,12 @@ namespace gpufmt::internal {
 
     void decompressBC5Block_SNorm4(const BC5Block &block, gpufmt::span<glm::vec4, 16> texels) noexcept {
         std::array<float, 8> redLUT;
-        uint64_t redBitmap;
+        uint32_t redBitmap;
 
         singleChannelBitmapDataSNorm(block.red0, block.red1, block.redBitmap, redLUT, redBitmap);
 
         std::array<float, 8> greenLUT;
-        uint64_t greenBitmap;
+        uint32_t greenBitmap;
 
         singleChannelBitmapDataSNorm(block.green0, block.green1, block.red0 > block.red1, block.greenBitmap, greenLUT, greenBitmap);
 
