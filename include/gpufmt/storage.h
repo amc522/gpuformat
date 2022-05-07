@@ -212,9 +212,9 @@ namespace gpufmt {
             std::array<DecompressedBlockT, gpufmt::FormatTraits<FormatV>::BlockTexelCount> decompressedTexels;
 
             //handle all the blocks that can be fully decompressed
-            for(uint32_t blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
-                for(uint32_t blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
-                    for(uint32_t blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
+            for(ExtentComponent blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
+                for(ExtentComponent blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
+                    for(ExtentComponent blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
                         uint32_t compressedIndex = blockZ * (compressedSurface.extentInBlocks.y * compressedSurface.extentInBlocks.x) +
                             blockY * (compressedSurface.extentInBlocks.x) + blockX;
 
@@ -227,7 +227,7 @@ namespace gpufmt {
                         uint32_t decompressedIndex = topLeftTexel.z * (decompressedSurface.extentInBlocks.y * decompressedSurface.extentInBlocks.x) +
                             topLeftTexel.y * (decompressedSurface.extentInBlocks.x) + topLeftTexel.x;
 
-                        for(uint32_t y = 0; y < compressedBlockExtent.y; ++y) {
+                        for(ExtentComponent y = 0; y < compressedBlockExtent.y; ++y) {
                             auto row = decompressedSurface.blockData.subspan(decompressedIndex, compressedBlockExtent.x);
                             std::copy(decompressedTexels.cbegin(), decompressedTexels.cbegin() + compressedBlockExtent.x, row.begin());
 
@@ -245,9 +245,9 @@ namespace gpufmt {
             Extent partialBlockExtent = compressedBlockExtent - (maxDecompressedExtent - decompressedSurface.extentInBlocks);
 
             // all the lonely blocks at the end of the row
-            for(uint32_t blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
-                for(uint32_t blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
-                    for(uint32_t blockX = fullDecompressExtents.x; blockX < compressedSurface.extentInBlocks.x; ++blockX) {
+            for(ExtentComponent blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
+                for(ExtentComponent blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
+                    for(ExtentComponent blockX = fullDecompressExtents.x; blockX < compressedSurface.extentInBlocks.x; ++blockX) {
                         uint32_t compressedIndex = blockZ * (compressedSurface.extentInBlocks.y * compressedSurface.extentInBlocks.x) +
                             blockY * (compressedSurface.extentInBlocks.x) + blockX;
 
@@ -260,7 +260,7 @@ namespace gpufmt {
                         uint32_t decompressedIndex = frontTopLeftTexel.z * (decompressedSurface.extentInBlocks.y * decompressedSurface.extentInBlocks.x) +
                             frontTopLeftTexel.y * (decompressedSurface.extentInBlocks.x) + frontTopLeftTexel.x;
 
-                        for(uint32_t y = 0; y < compressedBlockExtent.y; ++y) {
+                        for(ExtentComponent y = 0; y < compressedBlockExtent.y; ++y) {
                             auto row = decompressedSurface.blockData.subspan(decompressedIndex, partialBlockExtent.x);
                             std::copy(decompressedTexels.cbegin(), decompressedTexels.cbegin() + partialBlockExtent.x, row.begin());
 
@@ -271,9 +271,9 @@ namespace gpufmt {
             }
 
             // all the lonely blocks at the bottom of each slice
-            for(uint32_t blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
-                for(uint32_t blockY = fullDecompressExtents.y; blockY < compressedSurface.extentInBlocks.y; ++blockY) {
-                    for(uint32_t blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
+            for(ExtentComponent blockZ = 0; blockZ < fullDecompressExtents.z; ++blockZ) {
+                for(ExtentComponent blockY = fullDecompressExtents.y; blockY < compressedSurface.extentInBlocks.y; ++blockY) {
+                    for(ExtentComponent blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
                         uint32_t compressedIndex = blockZ * (compressedSurface.extentInBlocks.y * compressedSurface.extentInBlocks.x) +
                             blockY * (compressedSurface.extentInBlocks.x) + blockX;
 
@@ -286,7 +286,7 @@ namespace gpufmt {
                         uint32_t decompressedIndex = frontTopLeftTexel.z * (decompressedSurface.extentInBlocks.y * decompressedSurface.extentInBlocks.x) +
                             frontTopLeftTexel.y * (decompressedSurface.extentInBlocks.x) + frontTopLeftTexel.x;
 
-                        for(uint32_t y = 0; y < partialBlockExtent.y; ++y) {
+                        for(ExtentComponent y = 0; y < partialBlockExtent.y; ++y) {
                             auto row = decompressedSurface.blockData.subspan(decompressedIndex, compressedBlockExtent.x);
                             std::copy(decompressedTexels.cbegin(), decompressedTexels.cbegin() + compressedBlockExtent.x, row.begin());
 
@@ -297,9 +297,9 @@ namespace gpufmt {
             }
 
             // all the lonely block at the back of the surface
-            for(uint32_t blockZ = fullDecompressExtents.z; blockZ < compressedSurface.extentInBlocks.z; ++blockZ) {
-                for(uint32_t blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
-                    for(uint32_t blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
+            for(ExtentComponent blockZ = fullDecompressExtents.z; blockZ < compressedSurface.extentInBlocks.z; ++blockZ) {
+                for(ExtentComponent blockY = 0; blockY < fullDecompressExtents.y; ++blockY) {
+                    for(ExtentComponent blockX = 0; blockX < fullDecompressExtents.x; ++blockX) {
                         uint32_t compressedIndex = blockZ * (compressedSurface.extentInBlocks.y * compressedSurface.extentInBlocks.x) +
                             blockY * (compressedSurface.extentInBlocks.x) + blockX;
 
@@ -312,7 +312,7 @@ namespace gpufmt {
                         uint32_t decompressedIndex = frontTopLeftTexel.z * (decompressedSurface.extentInBlocks.y * decompressedSurface.extentInBlocks.x) +
                             frontTopLeftTexel.y * (decompressedSurface.extentInBlocks.x) + frontTopLeftTexel.x;
 
-                        for(uint32_t y = 0; y < compressedBlockExtent.y; ++y) {
+                        for(ExtentComponent y = 0; y < compressedBlockExtent.y; ++y) {
                             auto row = decompressedSurface.blockData.subspan(decompressedIndex, compressedBlockExtent.x);
                             std::copy(decompressedTexels.cbegin(), decompressedTexels.cbegin() + compressedBlockExtent.x, row.begin());
 

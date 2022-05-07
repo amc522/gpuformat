@@ -41,7 +41,8 @@ namespace gpufmt {
     using span = nonstd::span<T, Extent>;
 #endif
 
-    using Extent = glm::tvec3<uint32_t>;
+    using ExtentComponent = int32_t;
+    using Extent = glm::tvec3<ExtentComponent>;
     using byte = std::byte;
 
     template<class T>
