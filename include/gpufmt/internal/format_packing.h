@@ -13,23 +13,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsUNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsUNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsUNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsUNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsUNorm<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsUNorm<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsUNorm<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsUNorm<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsUNorm<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsUNorm<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -41,23 +41,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsSNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsSNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsSNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsSNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsSNorm<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsSNorm<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsSNorm<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsSNorm<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsSNorm<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsSNorm<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -70,23 +70,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsUScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsUScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsUScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsUScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsUScaled<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsUScaled<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsUScaled<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsUScaled<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsUScaled<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsUScaled<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -98,23 +98,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsSScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsSScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsSScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsSScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsSScaled<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsSScaled<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsSScaled<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsSScaled<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsSScaled<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsSScaled<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -127,24 +127,24 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_integral_v<Traits::ValueType>);
-        static_assert(std::is_unsigned_v<Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
+        static_assert(std::is_unsigned_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsUInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsUInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsUInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsUInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsUInt<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsUInt<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsUInt<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsUInt<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsUInt<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsUInt<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -156,24 +156,24 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_integral_v<Traits::ValueType>);
-        static_assert(std::is_signed_v<Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
+        static_assert(std::is_signed_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackBitsSInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue = internal::unpackBitsSInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            unpackedValue.r = internal::unpackBitsSInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            unpackedValue.r = internal::unpackBitsSInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackBitsSInt<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
+            unpackedValue.g = internal::unpackBitsSInt<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackBitsSInt<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
+            unpackedValue.b = internal::unpackBitsSInt<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackBitsSInt<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
+            unpackedValue.a = internal::unpackBitsSInt<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value);
         }
 
         return unpackedValue;
@@ -185,23 +185,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsUNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsUNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsUNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsUNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsUNorm<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsUNorm<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsUNorm<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsUNorm<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsUNorm<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsUNorm<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -213,23 +213,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
         
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsSNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsSNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsSNorm<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsSNorm<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsSNorm<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsSNorm<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsSNorm<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsSNorm<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsSNorm<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsSNorm<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -242,23 +242,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsUScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsUScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsUScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsUScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsUScaled<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsUScaled<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsUScaled<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsUScaled<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsUScaled<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsUScaled<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -270,23 +270,23 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsSScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsSScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsSScaled<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsSScaled<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsSScaled<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsSScaled<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsSScaled<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsSScaled<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsSScaled<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsSScaled<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -299,24 +299,24 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_integral_v<Traits::ValueType>);
-        static_assert(std::is_unsigned_v<Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
+        static_assert(std::is_unsigned_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsUInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsUInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsUInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsUInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsUInt<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsUInt<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsUInt<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsUInt<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsUInt<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsUInt<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -328,24 +328,24 @@ namespace gpufmt::internal {
         static_assert(Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_integral_v<Traits::ValueType>);
-        static_assert(std::is_signed_v<Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
+        static_assert(std::is_signed_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packBitsSInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
+            packedValue = internal::packBitsSInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value);
         } else {
-            packedValue = internal::packBitsSInt<Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
+            packedValue = internal::packBitsSInt<typename Traits::BlockType, Traits::info.redBitMask.width, Traits::info.redBitMask.offset>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue |= internal::packBitsSInt<Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
+            packedValue |= internal::packBitsSInt<typename Traits::BlockType, Traits::info.greenBitMask.width, Traits::info.greenBitMask.offset>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue |= internal::packBitsSInt<Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
+            packedValue |= internal::packBitsSInt<typename Traits::BlockType, Traits::info.blueBitMask.width, Traits::info.blueBitMask.offset>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue |= internal::packBitsSInt<Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
+            packedValue |= internal::packBitsSInt<typename Traits::BlockType, Traits::info.alphaBitMask.width, Traits::info.alphaBitMask.offset>(value.a);
         }
 
         return packedValue;
@@ -437,23 +437,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackUNorm<Traits::BlockType>(value);
+            unpackedValue = internal::unpackUNorm<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackUNorm<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackUNorm<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackUNorm<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackUNorm<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackUNorm<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackUNorm<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackUNorm<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackUNorm<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -466,23 +466,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackSNorm<Traits::BlockType>(value);
+            unpackedValue = internal::unpackSNorm<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackSNorm<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackSNorm<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackSNorm<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackSNorm<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackSNorm<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackSNorm<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackSNorm<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackSNorm<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -496,23 +496,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackUScaled<Traits::BlockType>(value);
+            unpackedValue = internal::unpackUScaled<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackUScaled<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackUScaled<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackUScaled<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackUScaled<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackUScaled<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackUScaled<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackUScaled<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackUScaled<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -525,23 +525,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackSScaled<Traits::BlockType>(value);
+            unpackedValue = internal::unpackSScaled<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackSScaled<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackSScaled<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackSScaled<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackSScaled<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackSScaled<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackSScaled<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackSScaled<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackSScaled<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -555,24 +555,24 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_unsigned_v<Traits::ValueType>);
-        static_assert(std::is_integral_v<Traits::ValueType>);
+        static_assert(std::is_unsigned_v<typename Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackUInt<Traits::BlockType>(value);
+            unpackedValue = internal::unpackUInt<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackUInt<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackUInt<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackUInt<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackUInt<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackUInt<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackUInt<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackUInt<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackUInt<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -585,24 +585,24 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_signed_v<Traits::ValueType>);
-        static_assert(std::is_integral_v<Traits::ValueType>);
+        static_assert(std::is_signed_v<typename Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackSInt<Traits::BlockType>(value);
+            unpackedValue = internal::unpackSInt<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackSInt<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackSInt<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackSInt<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackSInt<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackSInt<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackSInt<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackSInt<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackSInt<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -615,23 +615,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.floatingPoint);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::NarrowSampleType unpackedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            unpackedValue = internal::unpackFloat<Traits::BlockType>(value);
+            unpackedValue = internal::unpackFloat<typename Traits::BlockType>(value);
         } else {
-            unpackedValue.r = internal::unpackFloat<Traits::BlockType::value_type>(value[Traits::info.redIndex]);
+            unpackedValue.r = internal::unpackFloat<typename Traits::BlockType::value_type>(value[Traits::info.redIndex]);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            unpackedValue.g = internal::unpackFloat<Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
+            unpackedValue.g = internal::unpackFloat<typename Traits::BlockType::value_type>(value[Traits::info.greenIndex]);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            unpackedValue.b = internal::unpackFloat<Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
+            unpackedValue.b = internal::unpackFloat<typename Traits::BlockType::value_type>(value[Traits::info.blueIndex]);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            unpackedValue.a = internal::unpackFloat<Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
+            unpackedValue.a = internal::unpackFloat<typename Traits::BlockType::value_type>(value[Traits::info.alphaIndex]);
         }
 
         return unpackedValue;
@@ -644,23 +644,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packUNorm<Traits::BlockType>(value);
+            packedValue = internal::packUNorm<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packUNorm<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packUNorm<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packUNorm<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packUNorm<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packUNorm<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packUNorm<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packUNorm<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packUNorm<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -673,23 +673,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.normalized);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packSNorm<Traits::BlockType>(value);
+            packedValue = internal::packSNorm<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packSNorm<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packSNorm<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packSNorm<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packSNorm<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packSNorm<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packSNorm<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packSNorm<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packSNorm<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -703,23 +703,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packUScaled<Traits::BlockType>(value);
+            packedValue = internal::packUScaled<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packUScaled<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packUScaled<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packUScaled<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packUScaled<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packUScaled<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packUScaled<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packUScaled<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packUScaled<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -732,23 +732,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.scaled);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packSScaled<Traits::BlockType>(value);
+            packedValue = internal::packSScaled<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packSScaled<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packSScaled<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packSScaled<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packSScaled<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packSScaled<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packSScaled<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packSScaled<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packSScaled<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -762,24 +762,24 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(!Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_unsigned_v<Traits::ValueType>);
-        static_assert(std::is_integral_v<Traits::ValueType>);
+        static_assert(std::is_unsigned_v<typename Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packUInt<Traits::BlockType>(value);
+            packedValue = internal::packUInt<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packUInt<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packUInt<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packUInt<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packUInt<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packUInt<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packUInt<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packUInt<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packUInt<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -792,24 +792,24 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.integer);
-        static_assert(std::is_signed_v<Traits::ValueType>);
-        static_assert(std::is_integral_v<Traits::ValueType>);
+        static_assert(std::is_signed_v<typename Traits::ValueType>);
+        static_assert(std::is_integral_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packSInt<Traits::BlockType>(value);
+            packedValue = internal::packSInt<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packSInt<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packSInt<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packSInt<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packSInt<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packSInt<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packSInt<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packSInt<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packSInt<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
@@ -822,23 +822,23 @@ namespace gpufmt::internal {
         static_assert(!Traits::info.packed);
         static_assert(Traits::info.isSigned);
         static_assert(Traits::info.floatingPoint);
-        static_assert(std::is_floating_point_v<Traits::ValueType>);
+        static_assert(std::is_floating_point_v<typename Traits::ValueType>);
 
         typename Traits::BlockType packedValue;
 
         if constexpr(Traits::info.componentCount == 1) {
-            packedValue = internal::packFloat<Traits::BlockType>(value);
+            packedValue = internal::packFloat<typename Traits::BlockType>(value);
         } else {
-            packedValue[Traits::info.redIndex] = internal::packFloat<Traits::BlockType::value_type>(value.r);
+            packedValue[Traits::info.redIndex] = internal::packFloat<typename Traits::BlockType::value_type>(value.r);
         }
         if constexpr(Traits::info.componentCount >= 2) {
-            packedValue[Traits::info.greenIndex] = internal::packFloat<Traits::BlockType::value_type>(value.g);
+            packedValue[Traits::info.greenIndex] = internal::packFloat<typename Traits::BlockType::value_type>(value.g);
         }
         if constexpr(Traits::info.componentCount >= 3) {
-            packedValue[Traits::info.blueIndex] = internal::packFloat<Traits::BlockType::value_type>(value.b);
+            packedValue[Traits::info.blueIndex] = internal::packFloat<typename Traits::BlockType::value_type>(value.b);
         }
         if constexpr(Traits::info.componentCount == 4) {
-            packedValue[Traits::info.alphaIndex] = internal::packFloat<Traits::BlockType::value_type>(value.a);
+            packedValue[Traits::info.alphaIndex] = internal::packFloat<typename Traits::BlockType::value_type>(value.a);
         }
 
         return packedValue;
