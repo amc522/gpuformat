@@ -4,9 +4,9 @@
 #include <gpufmt/utility.h>
 
 #include <array>
+#include <cstdint>
 #include <optional>
 #include <string_view>
-#include <variant>
 
 #ifndef GL_OES_compressed_ETC1_RGB8_texture
 #define GL_OES_compressed_ETC1_RGB8_texture 1
@@ -728,7 +728,7 @@ namespace gpufmt::gl {
         }
 #ifndef GF_EXCLUDE_ETC_COMPRESSED_FORMATS
         //GL_COMPRESSED_RGB_ETC1
-        else if(static_cast<uint32>(internalFormat) == GL_ETC1_RGB8_OES)
+        else if(static_cast<uint32_t>(internalFormat) == GL_ETC1_RGB8_OES)
         {
             return gpufmt::Format::ETC2_R8G8B8_UNORM_BLOCK;
         }
