@@ -8586,7 +8586,7 @@ namespace gpufmt {
     }
 
     [[nodiscard]]
-    static constexpr const FormatInfo& formatInfo(Format format) noexcept {
+    constexpr const FormatInfo& formatInfo(Format format) noexcept {
         return visitFormat<internal::GetFormatInfoHelper>(format);
     }
 }

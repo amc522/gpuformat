@@ -944,7 +944,7 @@ namespace gpufmt::vulkan {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<gpufmt::Format> translateFormat(VkFormat vkFormat) noexcept {
+    constexpr std::optional<gpufmt::Format> translateFormat(VkFormat vkFormat) noexcept {
         std::optional<gpufmt::Format> format;
 
         switch(vkFormat)
@@ -1718,7 +1718,7 @@ namespace gpufmt::vulkan {
     }
 }
 
-static constexpr std::string_view to_string(VkFormat format) noexcept {
+constexpr std::string_view to_string(VkFormat format) noexcept {
     switch(format)
     {
     case VK_FORMAT_UNDEFINED:
@@ -2234,9 +2234,4 @@ static constexpr std::string_view to_string(VkFormat format) noexcept {
     default:
         return "VK_FORMAT_UNDEFINED";
     }
-}
-
-inline std::ostream &operator<<(std::ostream &out, VkFormat format) {
-    out << to_string(format);
-    return out;
 }

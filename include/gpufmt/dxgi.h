@@ -167,7 +167,7 @@ namespace gpufmt::dxgi {
     };
 
     [[nodiscard]]
-    static constexpr FormatConversion translateFormat(Format format) noexcept {
+    constexpr FormatConversion translateFormat(Format format) noexcept {
         FormatConversion conversion;
 
         switch(format)
@@ -809,7 +809,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<gpufmt::Format> translateFormat(DXGI_FORMAT dxgiFormat) noexcept {
+    constexpr std::optional<gpufmt::Format> translateFormat(DXGI_FORMAT dxgiFormat) noexcept {
         std::optional<gpufmt::Format> format;
 
         switch(dxgiFormat) {
@@ -1098,7 +1098,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<DXGI_FORMAT> depthShaderResourceViewFormat(Format format) noexcept {
+    constexpr std::optional<DXGI_FORMAT> depthShaderResourceViewFormat(Format format) noexcept {
         std::optional<DXGI_FORMAT> depthView;
 
         switch(format)
@@ -1126,7 +1126,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<DXGI_FORMAT> depthShaderResourceViewFormat(DXGI_FORMAT format) noexcept {
+    constexpr std::optional<DXGI_FORMAT> depthShaderResourceViewFormat(DXGI_FORMAT format) noexcept {
         std::optional<DXGI_FORMAT> depthView;
 
         switch(format)
@@ -1151,7 +1151,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<DXGI_FORMAT> stencilShaderResourceViewFormat(Format format) noexcept {
+    constexpr std::optional<DXGI_FORMAT> stencilShaderResourceViewFormat(Format format) noexcept {
         std::optional<DXGI_FORMAT> stencilView;
 
         switch(format)
@@ -1170,7 +1170,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<DXGI_FORMAT> stencilShaderResourceViewFormat(DXGI_FORMAT format) noexcept {
+    constexpr std::optional<DXGI_FORMAT> stencilShaderResourceViewFormat(DXGI_FORMAT format) noexcept {
         std::optional<DXGI_FORMAT> stencilView;
 
         switch(format)
@@ -1189,7 +1189,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr bool isTypelessFormat(DXGI_FORMAT format) noexcept {
+    constexpr bool isTypelessFormat(DXGI_FORMAT format) noexcept {
         switch(format)
         {
         case DXGI_FORMAT_R32G32B32A32_TYPELESS:
@@ -1244,7 +1244,7 @@ namespace gpufmt::dxgi {
     }
 
     [[nodiscard]]
-    static constexpr std::optional<DXGI_FORMAT> typelessFormat(DXGI_FORMAT format) noexcept {
+    constexpr std::optional<DXGI_FORMAT> typelessFormat(DXGI_FORMAT format) noexcept {
         std::optional<DXGI_FORMAT> typelessFormat;
 
         switch(format)
@@ -1773,7 +1773,7 @@ namespace gpufmt::dxgi {
 }
 
 [[nodiscard]]
-static constexpr std::string_view to_string(DXGI_FORMAT format) noexcept {
+constexpr std::string_view toString(DXGI_FORMAT format) noexcept {
     switch(format)
     {
     case DXGI_FORMAT_UNKNOWN:

@@ -6,7 +6,7 @@
 
 namespace gpufmt {
     [[nodiscard]]
-    static constexpr std::string_view to_string(gpufmt::Format format) noexcept {
+    constexpr std::string_view toString(gpufmt::Format format) noexcept {
         switch(format)
         {
         case gpufmt::Format::UNDEFINED:
@@ -445,9 +445,4 @@ namespace gpufmt {
             return "UNDEFINED";
         }
     }
-}
-
-inline std::ostream &operator<<(std::ostream &out, gpufmt::Format format) {
-    out << gpufmt::to_string(format);
-    return out;
 }

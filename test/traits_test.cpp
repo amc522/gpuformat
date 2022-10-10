@@ -20,7 +20,7 @@ public:
 
 TEST_CASE("Component count is valid") {
     for(gpufmt::Format format : gpufmt::FormatEnumerator()) {
-        DYNAMIC_SECTION("gpufmt::Format::" << to_string(format)) {
+        DYNAMIC_SECTION("gpufmt::Format::" << toString(format)) {
             gpufmt::visitFormat<ComponentCountTester>(format);
         }
     }
