@@ -75,7 +75,7 @@
 #include <gpufmt/config.h>
 
 namespace gpufmt {
-    enum class Format : short {
+    enum class Format : uint8_t {
         UNDEFINED,
         R4G4_UNORM_PACK8,
         R4G4B4A4_UNORM_PACK16,
