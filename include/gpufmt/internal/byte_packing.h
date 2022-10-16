@@ -11,7 +11,7 @@ namespace gpufmt::internal {
                       std::is_same_v<T, uint16_t>);
 
         static constexpr float scaleFactor = scaleFactorUNorm<sizeof(T) * 8>();
-        return static_cast<T>(std::clamp(value, 0.0f, 1.0f) * scaleFactor);
+        return static_cast<T>(std::round(std::clamp(value, 0.0f, 1.0f) * scaleFactor));
     }
 
     template<class T>
@@ -21,7 +21,7 @@ namespace gpufmt::internal {
                       std::is_same_v<T, int16_t>);
 
         static constexpr float scaleFactor = scaleFactorSNorm<sizeof(T) * 8>();
-        return static_cast<T>(std::clamp(value, -1.0f, 1.0f) * scaleFactor);
+        return static_cast<T>(std::round(std::clamp(value, -1.0f, 1.0f) * scaleFactor));
     }
 
     template<class T>
@@ -134,8 +134,8 @@ namespace gpufmt::internal {
         static_assert(std::is_same_v<T, int8_t> ||
                       std::is_same_v<T, int16_t>);
 
-        static constexpr float scaleFactor = 1.0f / scaleFactorUNorm<sizeof(T) * 8>();
-        return static_cast<float>(value) * scaleFactor;
+        static constexpr float scaleFactor = 1.0f / scaleFactorSNorm<sizeof(T) * 8>();
+        return std::max(static_cast<float>(value) * scaleFactor, -1.0f);
     }
 
     template<class T>

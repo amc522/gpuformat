@@ -29,7 +29,8 @@ namespace gpufmt::internal {
 
         static constexpr float scaleFactor = scaleFactorUNorm<BitCount>();
         static constexpr T mask = bitMask<T, BitCount>();
-        return (static_cast<T>(value * scaleFactor) & mask) << Offset;
+        const float clampedValue = std::clamp(value, 0.0f, 1.0f);
+        return (static_cast<T>(std::round(clampedValue * scaleFactor)) & mask) << Offset;
     }
 
     template<class T, size_t BitCount, size_t Offset>
