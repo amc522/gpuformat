@@ -22,9 +22,20 @@ namespace gpufmt::internal {
         }
     }
 
+    template<class T>
+    [[nodiscard]]
+    constexpr T bitMask(uint8_t bitCount) noexcept {
+        static_assert(std::is_integral_v<T>);
+        static_assert(std::is_unsigned_v<T>);
+
+        return (bitCount < (sizeof(T) * 8u)) ?
+            ((static_cast<T>(1u)) << (static_cast<T>(bitCount))) - static_cast<T>(1u) :
+            std::numeric_limits<T>::max();
+    }
+
     template<class T, size_t BitCount>
     [[nodiscard]]
-    constexpr T signedMin()noexcept {
+    constexpr T signedMin() noexcept {
         static_assert(std::is_signed_v<T>);
         static_assert(std::is_integral_v<T>);
         static_assert(BitCount <= sizeof(T) * 8);
@@ -39,9 +50,22 @@ namespace gpufmt::internal {
         }
     }
 
+    template<class T>
+    [[nodiscard]]
+    constexpr T signedMin(uint8_t bitCount) noexcept {
+        static_assert(std::is_signed_v<T>);
+        static_assert(std::is_integral_v<T>);
+        
+        using UnsignedT = std::make_unsigned_t<T>;
+
+        return (bitCount < (sizeof(T) * 8u)) ? 
+            static_cast<T>(-1) * static_cast<T>((static_cast<UnsignedT>(1u)) << (static_cast<UnsignedT>(bitCount - 1u))) : 
+            std::numeric_limits<T>::lowest();
+    }
+
     template<class T, size_t BitCount>
     [[nodiscard]]
-    constexpr T signedMax()noexcept {
+    constexpr T signedMax() noexcept {
         static_assert(std::is_signed_v<T>);
         static_assert(std::is_integral_v<T>);
         static_assert(BitCount <= sizeof(T) * 8);
@@ -54,6 +78,30 @@ namespace gpufmt::internal {
         } else {
             return std::numeric_limits<T>::max();
         }
+    }
+
+    template<class T>
+    [[nodiscard]]
+    constexpr T signedMax(uint8_t bitCount) noexcept {
+        static_assert(std::is_signed_v<T>);
+        static_assert(std::is_integral_v<T>);
+
+        using UnsignedT = std::make_unsigned_t<T>;
+
+        return (bitCount < (sizeof(T) * 8u)) ?
+            static_cast<T>(bitMask<UnsignedT>(bitCount - 1)) :
+            std::numeric_limits<T>::max();
+    }
+
+    template<class T>
+    [[nodiscard]]
+    constexpr T unsignedMax(uint8_t bitCount) noexcept {
+        static_assert(std::is_unsigned_v<T>);
+        static_assert(std::is_integral_v<T>);
+
+        return (bitCount < (sizeof(T) * 8u)) ?
+            static_cast<T>(bitMask<T>(bitCount)) :
+            std::numeric_limits<T>::max();
     }
 
     template<class T, size_t BitCount>
@@ -241,6 +289,11 @@ namespace gpufmt::internal {
         return static_cast<float>(bitMask<uint64_t, BitCount>());
     }
 
+    [[nodiscard]]
+    constexpr float uscaledMax(uint8_t bitCount) noexcept {
+        return static_cast<float>(bitMask<uint64_t>(bitCount));
+    }
+
     template<size_t BitCount>
     [[nodiscard]]
     constexpr float sscaledMin() noexcept {
@@ -250,6 +303,11 @@ namespace gpufmt::internal {
         return -static_cast<float>(1u << (BitCount - 1u));
     }
 
+    [[nodiscard]]
+    constexpr float sscaledMin(uint8_t bitCount) noexcept {
+        return (bitCount > 0) ? -static_cast<float>(1u << (bitCount - 1u)) : 0.0f;
+    }
+
     template<size_t BitCount>
     [[nodiscard]]
     constexpr float sscaledMax() noexcept {
@@ -257,5 +315,10 @@ namespace gpufmt::internal {
         static_assert(BitCount <= 64);
 
         return static_cast<float>(bitMask<uint64_t, BitCount - 1>());
+    }
+
+    [[nodiscard]]
+    constexpr float sscaledMax(uint8_t bitCount) noexcept {
+        return static_cast<float>(bitMask<uint64_t>(bitCount - 1));
     }
 }

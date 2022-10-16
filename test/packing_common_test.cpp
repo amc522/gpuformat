@@ -89,7 +89,7 @@ TEST_CASE("signedMin<int16_t, N>", "[signedInt]") {
 
 }
 
-TEST_CASE("signedMin<int32_t, 1>", "[signedInt]") {
+TEST_CASE("signedMin<int32_t, N>", "[signedInt]") {
     CHECK(signedMin<int32_t, 1>() == -1);
     CHECK(signedMin<int32_t, 2>() == -2);
     CHECK(signedMin<int32_t, 3>() == -4);
@@ -124,7 +124,7 @@ TEST_CASE("signedMin<int32_t, 1>", "[signedInt]") {
     CHECK(signedMin<int32_t, 32>() == -2147483648LL);
 }
 
-TEST_CASE("signedMin<int64_t, 1>", "[signedInt]") {
+TEST_CASE("signedMin<int64_t, N>", "[signedInt]") {
     CHECK(signedMin<int64_t, 1>() == -1);
     CHECK(signedMin<int64_t, 2>() == -2);
     CHECK(signedMin<int64_t, 3>() == -4);
@@ -191,6 +191,139 @@ TEST_CASE("signedMin<int64_t, 1>", "[signedInt]") {
     CHECK(signedMin<int64_t, 64>() == -9223372036854775808LL);
 }
 
+TEST_CASE("signedMin<int8_t>", "[signedInt]") {
+    CHECK(signedMin<int8_t>(1) == -1);
+    CHECK(signedMin<int8_t>(2) == -2);
+    CHECK(signedMin<int8_t>(3) == -4);
+    CHECK(signedMin<int8_t>(4) == -8);
+    CHECK(signedMin<int8_t>(5) == -16);
+    CHECK(signedMin<int8_t>(6) == -32);
+    CHECK(signedMin<int8_t>(7) == -64);
+    CHECK(signedMin<int8_t>(8) == -128);
+}
+
+TEST_CASE("signedMin<int16_t>", "[signedInt]") {
+    CHECK(signedMin<int16_t>(1) == -1);
+    CHECK(signedMin<int16_t>(2) == -2);
+    CHECK(signedMin<int16_t>(3) == -4);
+    CHECK(signedMin<int16_t>(4) == -8);
+    CHECK(signedMin<int16_t>(5) == -16);
+    CHECK(signedMin<int16_t>(6) == -32);
+    CHECK(signedMin<int16_t>(7) == -64);
+    CHECK(signedMin<int16_t>(8) == -128);
+    CHECK(signedMin<int16_t>(9) == -256);
+    CHECK(signedMin<int16_t>(10) == -512);
+    CHECK(signedMin<int16_t>(11) == -1024);
+    CHECK(signedMin<int16_t>(12) == -2048);
+    CHECK(signedMin<int16_t>(13) == -4096);
+    CHECK(signedMin<int16_t>(14) == -8192);
+    CHECK(signedMin<int16_t>(15) == -16384);
+    CHECK(signedMin<int16_t>(16) == -32768);
+
+}
+
+TEST_CASE("signedMin<int32_t>", "[signedInt]") {
+    CHECK(signedMin<int32_t>(1) == -1);
+    CHECK(signedMin<int32_t>(2) == -2);
+    CHECK(signedMin<int32_t>(3) == -4);
+    CHECK(signedMin<int32_t>(4) == -8);
+    CHECK(signedMin<int32_t>(5) == -16);
+    CHECK(signedMin<int32_t>(6) == -32);
+    CHECK(signedMin<int32_t>(7) == -64);
+    CHECK(signedMin<int32_t>(8) == -128);
+    CHECK(signedMin<int32_t>(9) == -256);
+    CHECK(signedMin<int32_t>(10) == -512);
+    CHECK(signedMin<int32_t>(11) == -1024);
+    CHECK(signedMin<int32_t>(12) == -2048);
+    CHECK(signedMin<int32_t>(13) == -4096);
+    CHECK(signedMin<int32_t>(14) == -8192);
+    CHECK(signedMin<int32_t>(15) == -16384);
+    CHECK(signedMin<int32_t>(16) == -32768);
+    CHECK(signedMin<int32_t>(17) == -65536);
+    CHECK(signedMin<int32_t>(18) == -131072);
+    CHECK(signedMin<int32_t>(19) == -262144);
+    CHECK(signedMin<int32_t>(20) == -524288);
+    CHECK(signedMin<int32_t>(21) == -1048576);
+    CHECK(signedMin<int32_t>(22) == -2097152);
+    CHECK(signedMin<int32_t>(23) == -4194304);
+    CHECK(signedMin<int32_t>(24) == -8388608);
+    CHECK(signedMin<int32_t>(25) == -16777216);
+    CHECK(signedMin<int32_t>(26) == -33554432);
+    CHECK(signedMin<int32_t>(27) == -67108864);
+    CHECK(signedMin<int32_t>(28) == -134217728);
+    CHECK(signedMin<int32_t>(29) == -268435456);
+    CHECK(signedMin<int32_t>(30) == -536870912);
+    CHECK(signedMin<int32_t>(31) == -1073741824);
+    CHECK(signedMin<int32_t>(32) == -2147483648LL);
+}
+
+TEST_CASE("signedMin<int64_t>", "[signedInt]") {
+    CHECK(signedMin<int64_t>(1) == -1);
+    CHECK(signedMin<int64_t>(2) == -2);
+    CHECK(signedMin<int64_t>(3) == -4);
+    CHECK(signedMin<int64_t>(4) == -8);
+    CHECK(signedMin<int64_t>(5) == -16);
+    CHECK(signedMin<int64_t>(6) == -32);
+    CHECK(signedMin<int64_t>(7) == -64);
+    CHECK(signedMin<int64_t>(8) == -128);
+    CHECK(signedMin<int64_t>(9) == -256);
+    CHECK(signedMin<int64_t>(10) == -512);
+    CHECK(signedMin<int64_t>(11) == -1024);
+    CHECK(signedMin<int64_t>(12) == -2048);
+    CHECK(signedMin<int64_t>(13) == -4096);
+    CHECK(signedMin<int64_t>(14) == -8192);
+    CHECK(signedMin<int64_t>(15) == -16384);
+    CHECK(signedMin<int64_t>(16) == -32768);
+    CHECK(signedMin<int64_t>(17) == -65536);
+    CHECK(signedMin<int64_t>(18) == -131072);
+    CHECK(signedMin<int64_t>(19) == -262144);
+    CHECK(signedMin<int64_t>(20) == -524288);
+    CHECK(signedMin<int64_t>(21) == -1048576);
+    CHECK(signedMin<int64_t>(22) == -2097152);
+    CHECK(signedMin<int64_t>(23) == -4194304);
+    CHECK(signedMin<int64_t>(24) == -8388608);
+    CHECK(signedMin<int64_t>(25) == -16777216);
+    CHECK(signedMin<int64_t>(26) == -33554432);
+    CHECK(signedMin<int64_t>(27) == -67108864);
+    CHECK(signedMin<int64_t>(28) == -134217728);
+    CHECK(signedMin<int64_t>(29) == -268435456);
+    CHECK(signedMin<int64_t>(30) == -536870912);
+    CHECK(signedMin<int64_t>(31) == -1073741824);
+    CHECK(signedMin<int64_t>(32) == -2147483648LL);
+    CHECK(signedMin<int64_t>(33) == -4294967296LL);
+    CHECK(signedMin<int64_t>(34) == -8589934592LL);
+    CHECK(signedMin<int64_t>(35) == -17179869184LL);
+    CHECK(signedMin<int64_t>(36) == -34359738368LL);
+    CHECK(signedMin<int64_t>(37) == -68719476736LL);
+    CHECK(signedMin<int64_t>(38) == -137438953472LL);
+    CHECK(signedMin<int64_t>(39) == -274877906944LL);
+    CHECK(signedMin<int64_t>(40) == -549755813888LL);
+    CHECK(signedMin<int64_t>(41) == -1099511627776LL);
+    CHECK(signedMin<int64_t>(42) == -2199023255552LL);
+    CHECK(signedMin<int64_t>(43) == -4398046511104LL);
+    CHECK(signedMin<int64_t>(44) == -8796093022208LL);
+    CHECK(signedMin<int64_t>(45) == -17592186044416LL);
+    CHECK(signedMin<int64_t>(46) == -35184372088832LL);
+    CHECK(signedMin<int64_t>(47) == -70368744177664LL);
+    CHECK(signedMin<int64_t>(48) == -140737488355328LL);
+    CHECK(signedMin<int64_t>(49) == -281474976710656LL);
+    CHECK(signedMin<int64_t>(50) == -562949953421312LL);
+    CHECK(signedMin<int64_t>(51) == -1125899906842624LL);
+    CHECK(signedMin<int64_t>(52) == -2251799813685248LL);
+    CHECK(signedMin<int64_t>(53) == -4503599627370496LL);
+    CHECK(signedMin<int64_t>(54) == -9007199254740992LL);
+    CHECK(signedMin<int64_t>(55) == -18014398509481984LL);
+    CHECK(signedMin<int64_t>(56) == -36028797018963968LL);
+    CHECK(signedMin<int64_t>(57) == -72057594037927936LL);
+    CHECK(signedMin<int64_t>(58) == -144115188075855872LL);
+    CHECK(signedMin<int64_t>(59) == -288230376151711744LL);
+    CHECK(signedMin<int64_t>(60) == -576460752303423488LL);
+    CHECK(signedMin<int64_t>(61) == -1152921504606846976LL);
+    CHECK(signedMin<int64_t>(62) == -2305843009213693952LL);
+    CHECK(signedMin<int64_t>(63) == -4611686018427387904LL);
+    CHECK(signedMin<int64_t>(64) == -9223372036854775808LL);
+}
+
 TEST_CASE("signedMax<int8_t, N>", "[signedInt]") {
     CHECK(signedMax<int8_t, 1>() == 0);
     CHECK(signedMax<int8_t, 2>() == 1);
@@ -221,7 +354,7 @@ TEST_CASE("signedMax<int16_t, N>", "[signedInt]") {
     CHECK(signedMax<int16_t, 16>() == 32767);
 }
 
-TEST_CASE("signedMax<int32_t, 1>", "[signedInt]") {
+TEST_CASE("signedMax<int32_t, N>", "[signedInt]") {
     CHECK(signedMax<int32_t, 1>() == 0);
     CHECK(signedMax<int32_t, 2>() == 1);
     CHECK(signedMax<int32_t, 3>() == 3);
@@ -256,7 +389,7 @@ TEST_CASE("signedMax<int32_t, 1>", "[signedInt]") {
     CHECK(signedMax<int32_t, 32>() == 2147483647LL);
 }
 
-TEST_CASE("signedMax<int64_t, 1>", "[signedInt]") {
+TEST_CASE("signedMax<int64_t, N>", "[signedInt]") {
     CHECK(signedMax<int64_t, 1>() == 0);
     CHECK(signedMax<int64_t, 2>() == 1);
     CHECK(signedMax<int64_t, 3>() == 3);
@@ -321,6 +454,270 @@ TEST_CASE("signedMax<int64_t, 1>", "[signedInt]") {
     CHECK(signedMax<int64_t, 62>() == 2305843009213693951LL);
     CHECK(signedMax<int64_t, 63>() == 4611686018427387903LL);
     CHECK(signedMax<int64_t, 64>() == 9223372036854775807LL);
+}
+
+TEST_CASE("signedMax<int8_t>", "[signedInt]") {
+    CHECK(signedMax<int8_t>(1) == 0);
+    CHECK(signedMax<int8_t>(2) == 1);
+    CHECK(signedMax<int8_t>(3) == 3);
+    CHECK(signedMax<int8_t>(4) == 7);
+    CHECK(signedMax<int8_t>(5) == 15);
+    CHECK(signedMax<int8_t>(6) == 31);
+    CHECK(signedMax<int8_t>(7) == 63);
+    CHECK(signedMax<int8_t>(8) == 127);
+}
+
+TEST_CASE("signedMax<int16_t>", "[signedInt]") {
+    CHECK(signedMax<int16_t>(1) == 0);
+    CHECK(signedMax<int16_t>(2) == 1);
+    CHECK(signedMax<int16_t>(3) == 3);
+    CHECK(signedMax<int16_t>(4) == 7);
+    CHECK(signedMax<int16_t>(5) == 15);
+    CHECK(signedMax<int16_t>(6) == 31);
+    CHECK(signedMax<int16_t>(7) == 63);
+    CHECK(signedMax<int16_t>(8) == 127);
+    CHECK(signedMax<int16_t>(9) == 255);
+    CHECK(signedMax<int16_t>(10) == 511);
+    CHECK(signedMax<int16_t>(11) == 1023);
+    CHECK(signedMax<int16_t>(12) == 2047);
+    CHECK(signedMax<int16_t>(13) == 4095);
+    CHECK(signedMax<int16_t>(14) == 8191);
+    CHECK(signedMax<int16_t>(15) == 16383);
+    CHECK(signedMax<int16_t>(16) == 32767);
+}
+
+TEST_CASE("signedMax<int32_t>", "[signedInt]") {
+    CHECK(signedMax<int32_t>(1) == 0);
+    CHECK(signedMax<int32_t>(2) == 1);
+    CHECK(signedMax<int32_t>(3) == 3);
+    CHECK(signedMax<int32_t>(4) == 7);
+    CHECK(signedMax<int32_t>(5) == 15);
+    CHECK(signedMax<int32_t>(6) == 31);
+    CHECK(signedMax<int32_t>(7) == 63);
+    CHECK(signedMax<int32_t>(8) == 127);
+    CHECK(signedMax<int32_t>(9) == 255);
+    CHECK(signedMax<int32_t>(10) == 511);
+    CHECK(signedMax<int32_t>(11) == 1023);
+    CHECK(signedMax<int32_t>(12) == 2047);
+    CHECK(signedMax<int32_t>(13) == 4095);
+    CHECK(signedMax<int32_t>(14) == 8191);
+    CHECK(signedMax<int32_t>(15) == 16383);
+    CHECK(signedMax<int32_t>(16) == 32767);
+    CHECK(signedMax<int32_t>(17) == 65535);
+    CHECK(signedMax<int32_t>(18) == 131071);
+    CHECK(signedMax<int32_t>(19) == 262143);
+    CHECK(signedMax<int32_t>(20) == 524287);
+    CHECK(signedMax<int32_t>(21) == 1048575);
+    CHECK(signedMax<int32_t>(22) == 2097151);
+    CHECK(signedMax<int32_t>(23) == 4194303);
+    CHECK(signedMax<int32_t>(24) == 8388607);
+    CHECK(signedMax<int32_t>(25) == 16777215);
+    CHECK(signedMax<int32_t>(26) == 33554431);
+    CHECK(signedMax<int32_t>(27) == 67108863);
+    CHECK(signedMax<int32_t>(28) == 134217727);
+    CHECK(signedMax<int32_t>(29) == 268435455);
+    CHECK(signedMax<int32_t>(30) == 536870911);
+    CHECK(signedMax<int32_t>(31) == 1073741823);
+    CHECK(signedMax<int32_t>(32) == 2147483647LL);
+}
+
+TEST_CASE("signedMax<int64_t>", "[signedInt]") {
+    CHECK(signedMax<int64_t>(1) == 0);
+    CHECK(signedMax<int64_t>(2) == 1);
+    CHECK(signedMax<int64_t>(3) == 3);
+    CHECK(signedMax<int64_t>(4) == 7);
+    CHECK(signedMax<int64_t>(5) == 15);
+    CHECK(signedMax<int64_t>(6) == 31);
+    CHECK(signedMax<int64_t>(7) == 63);
+    CHECK(signedMax<int64_t>(8) == 127);
+    CHECK(signedMax<int64_t>(9) == 255);
+    CHECK(signedMax<int64_t>(10) == 511);
+    CHECK(signedMax<int64_t>(11) == 1023);
+    CHECK(signedMax<int64_t>(12) == 2047);
+    CHECK(signedMax<int64_t>(13) == 4095);
+    CHECK(signedMax<int64_t>(14) == 8191);
+    CHECK(signedMax<int64_t>(15) == 16383);
+    CHECK(signedMax<int64_t>(16) == 32767);
+    CHECK(signedMax<int64_t>(17) == 65535);
+    CHECK(signedMax<int64_t>(18) == 131071);
+    CHECK(signedMax<int64_t>(19) == 262143);
+    CHECK(signedMax<int64_t>(20) == 524287);
+    CHECK(signedMax<int64_t>(21) == 1048575);
+    CHECK(signedMax<int64_t>(22) == 2097151);
+    CHECK(signedMax<int64_t>(23) == 4194303);
+    CHECK(signedMax<int64_t>(24) == 8388607);
+    CHECK(signedMax<int64_t>(25) == 16777215);
+    CHECK(signedMax<int64_t>(26) == 33554431);
+    CHECK(signedMax<int64_t>(27) == 67108863);
+    CHECK(signedMax<int64_t>(28) == 134217727);
+    CHECK(signedMax<int64_t>(29) == 268435455);
+    CHECK(signedMax<int64_t>(30) == 536870911);
+    CHECK(signedMax<int64_t>(31) == 1073741823);
+    CHECK(signedMax<int64_t>(32) == 2147483647LL);
+    CHECK(signedMax<int64_t>(33) == 4294967295LL);
+    CHECK(signedMax<int64_t>(34) == 8589934591LL);
+    CHECK(signedMax<int64_t>(35) == 17179869183LL);
+    CHECK(signedMax<int64_t>(36) == 34359738367LL);
+    CHECK(signedMax<int64_t>(37) == 68719476735LL);
+    CHECK(signedMax<int64_t>(38) == 137438953471LL);
+    CHECK(signedMax<int64_t>(39) == 274877906943LL);
+    CHECK(signedMax<int64_t>(40) == 549755813887LL);
+    CHECK(signedMax<int64_t>(41) == 1099511627775LL);
+    CHECK(signedMax<int64_t>(42) == 2199023255551LL);
+    CHECK(signedMax<int64_t>(43) == 4398046511103LL);
+    CHECK(signedMax<int64_t>(44) == 8796093022207LL);
+    CHECK(signedMax<int64_t>(45) == 17592186044415LL);
+    CHECK(signedMax<int64_t>(46) == 35184372088831LL);
+    CHECK(signedMax<int64_t>(47) == 70368744177663LL);
+    CHECK(signedMax<int64_t>(48) == 140737488355327LL);
+    CHECK(signedMax<int64_t>(49) == 281474976710655LL);
+    CHECK(signedMax<int64_t>(50) == 562949953421311LL);
+    CHECK(signedMax<int64_t>(51) == 1125899906842623LL);
+    CHECK(signedMax<int64_t>(52) == 2251799813685247LL);
+    CHECK(signedMax<int64_t>(53) == 4503599627370495LL);
+    CHECK(signedMax<int64_t>(54) == 9007199254740991LL);
+    CHECK(signedMax<int64_t>(55) == 18014398509481983LL);
+    CHECK(signedMax<int64_t>(56) == 36028797018963967LL);
+    CHECK(signedMax<int64_t>(57) == 72057594037927935LL);
+    CHECK(signedMax<int64_t>(58) == 144115188075855871LL);
+    CHECK(signedMax<int64_t>(59) == 288230376151711743LL);
+    CHECK(signedMax<int64_t>(60) == 576460752303423487LL);
+    CHECK(signedMax<int64_t>(61) == 1152921504606846975LL);
+    CHECK(signedMax<int64_t>(62) == 2305843009213693951LL);
+    CHECK(signedMax<int64_t>(63) == 4611686018427387903LL);
+    CHECK(signedMax<int64_t>(64) == 9223372036854775807LL);
+}
+
+TEST_CASE("unsignedMax<uint8_t>", "[unsignedInt]") {
+    CHECK(unsignedMax<uint8_t>(1) == 1);
+    CHECK(unsignedMax<uint8_t>(2) == 3);
+    CHECK(unsignedMax<uint8_t>(3) == 7);
+    CHECK(unsignedMax<uint8_t>(4) == 15);
+    CHECK(unsignedMax<uint8_t>(5) == 31);
+    CHECK(unsignedMax<uint8_t>(6) == 63);
+    CHECK(unsignedMax<uint8_t>(7) == 127);
+    CHECK(unsignedMax<uint8_t>(8) == 255);
+}
+
+TEST_CASE("unsignedMax<uint16_t>", "[unsignedInt]") {
+    CHECK(unsignedMax<uint16_t>(1) == 1);
+    CHECK(unsignedMax<uint16_t>(2) == 3);
+    CHECK(unsignedMax<uint16_t>(3) == 7);
+    CHECK(unsignedMax<uint16_t>(4) == 15);
+    CHECK(unsignedMax<uint16_t>(5) == 31);
+    CHECK(unsignedMax<uint16_t>(6) == 63);
+    CHECK(unsignedMax<uint16_t>(7) == 127);
+    CHECK(unsignedMax<uint16_t>(8) == 255);
+    CHECK(unsignedMax<uint16_t>(9) == 511);
+    CHECK(unsignedMax<uint16_t>(10) == 1023);
+    CHECK(unsignedMax<uint16_t>(11) == 2047);
+    CHECK(unsignedMax<uint16_t>(12) == 4095);
+    CHECK(unsignedMax<uint16_t>(13) == 8191);
+    CHECK(unsignedMax<uint16_t>(14) == 16383);
+    CHECK(unsignedMax<uint16_t>(15) == 32767);
+    CHECK(unsignedMax<uint16_t>(16) == 65535);
+}
+
+TEST_CASE("unsignedMax<uint32_t>", "[unsignedInt]") {
+    CHECK(unsignedMax<uint32_t>(1) == 1);
+    CHECK(unsignedMax<uint32_t>(2) == 3);
+    CHECK(unsignedMax<uint32_t>(3) == 7);
+    CHECK(unsignedMax<uint32_t>(4) == 15);
+    CHECK(unsignedMax<uint32_t>(5) == 31);
+    CHECK(unsignedMax<uint32_t>(6) == 63);
+    CHECK(unsignedMax<uint32_t>(7) == 127);
+    CHECK(unsignedMax<uint32_t>(8) == 255);
+    CHECK(unsignedMax<uint32_t>(9) == 511);
+    CHECK(unsignedMax<uint32_t>(10) == 1023);
+    CHECK(unsignedMax<uint32_t>(11) == 2047);
+    CHECK(unsignedMax<uint32_t>(12) == 4095);
+    CHECK(unsignedMax<uint32_t>(13) == 8191);
+    CHECK(unsignedMax<uint32_t>(14) == 16383);
+    CHECK(unsignedMax<uint32_t>(15) == 32767);
+    CHECK(unsignedMax<uint32_t>(16) == 65535);
+    CHECK(unsignedMax<uint32_t>(17) == 131071);
+    CHECK(unsignedMax<uint32_t>(18) == 262143);
+    CHECK(unsignedMax<uint32_t>(19) == 524287);
+    CHECK(unsignedMax<uint32_t>(20) == 1048575);
+    CHECK(unsignedMax<uint32_t>(21) == 2097151);
+    CHECK(unsignedMax<uint32_t>(22) == 4194303);
+    CHECK(unsignedMax<uint32_t>(23) == 8388607);
+    CHECK(unsignedMax<uint32_t>(24) == 16777215);
+    CHECK(unsignedMax<uint32_t>(25) == 33554431);
+    CHECK(unsignedMax<uint32_t>(26) == 67108863);
+    CHECK(unsignedMax<uint32_t>(27) == 134217727);
+    CHECK(unsignedMax<uint32_t>(28) == 268435455);
+    CHECK(unsignedMax<uint32_t>(29) == 536870911);
+    CHECK(unsignedMax<uint32_t>(30) == 1073741823);
+    CHECK(unsignedMax<uint32_t>(31) == 2147483647LL);
+    CHECK(unsignedMax<uint32_t>(32) == 4294967295LL);
+}
+
+TEST_CASE("unsignedMax<uint64_t>", "[unsignedInt]") {
+    CHECK(unsignedMax<uint64_t>(1) == 1);
+    CHECK(unsignedMax<uint64_t>(2) == 3);
+    CHECK(unsignedMax<uint64_t>(3) == 7);
+    CHECK(unsignedMax<uint64_t>(4) == 15);
+    CHECK(unsignedMax<uint64_t>(5) == 31);
+    CHECK(unsignedMax<uint64_t>(6) == 63);
+    CHECK(unsignedMax<uint64_t>(7) == 127);
+    CHECK(unsignedMax<uint64_t>(8) == 255);
+    CHECK(unsignedMax<uint64_t>(9) == 511);
+    CHECK(unsignedMax<uint64_t>(10) == 1023);
+    CHECK(unsignedMax<uint64_t>(11) == 2047);
+    CHECK(unsignedMax<uint64_t>(12) == 4095);
+    CHECK(unsignedMax<uint64_t>(13) == 8191);
+    CHECK(unsignedMax<uint64_t>(14) == 16383);
+    CHECK(unsignedMax<uint64_t>(15) == 32767);
+    CHECK(unsignedMax<uint64_t>(16) == 65535);
+    CHECK(unsignedMax<uint64_t>(17) == 131071);
+    CHECK(unsignedMax<uint64_t>(18) == 262143);
+    CHECK(unsignedMax<uint64_t>(19) == 524287);
+    CHECK(unsignedMax<uint64_t>(20) == 1048575);
+    CHECK(unsignedMax<uint64_t>(21) == 2097151);
+    CHECK(unsignedMax<uint64_t>(22) == 4194303);
+    CHECK(unsignedMax<uint64_t>(23) == 8388607);
+    CHECK(unsignedMax<uint64_t>(24) == 16777215);
+    CHECK(unsignedMax<uint64_t>(25) == 33554431);
+    CHECK(unsignedMax<uint64_t>(26) == 67108863);
+    CHECK(unsignedMax<uint64_t>(27) == 134217727);
+    CHECK(unsignedMax<uint64_t>(28) == 268435455);
+    CHECK(unsignedMax<uint64_t>(29) == 536870911);
+    CHECK(unsignedMax<uint64_t>(30) == 1073741823);
+    CHECK(unsignedMax<uint64_t>(31) == 2147483647LL);
+    CHECK(unsignedMax<uint64_t>(32) == 4294967295LL);
+    CHECK(unsignedMax<uint64_t>(33) == 8589934591LL);
+    CHECK(unsignedMax<uint64_t>(34) == 17179869183LL);
+    CHECK(unsignedMax<uint64_t>(35) == 34359738367LL);
+    CHECK(unsignedMax<uint64_t>(36) == 68719476735LL);
+    CHECK(unsignedMax<uint64_t>(37) == 137438953471LL);
+    CHECK(unsignedMax<uint64_t>(38) == 274877906943LL);
+    CHECK(unsignedMax<uint64_t>(39) == 549755813887LL);
+    CHECK(unsignedMax<uint64_t>(40) == 1099511627775LL);
+    CHECK(unsignedMax<uint64_t>(41) == 2199023255551LL);
+    CHECK(unsignedMax<uint64_t>(42) == 4398046511103LL);
+    CHECK(unsignedMax<uint64_t>(43) == 8796093022207LL);
+    CHECK(unsignedMax<uint64_t>(44) == 17592186044415LL);
+    CHECK(unsignedMax<uint64_t>(45) == 35184372088831LL);
+    CHECK(unsignedMax<uint64_t>(46) == 70368744177663LL);
+    CHECK(unsignedMax<uint64_t>(47) == 140737488355327LL);
+    CHECK(unsignedMax<uint64_t>(48) == 281474976710655LL);
+    CHECK(unsignedMax<uint64_t>(49) == 562949953421311LL);
+    CHECK(unsignedMax<uint64_t>(50) == 1125899906842623LL);
+    CHECK(unsignedMax<uint64_t>(51) == 2251799813685247LL);
+    CHECK(unsignedMax<uint64_t>(52) == 4503599627370495LL);
+    CHECK(unsignedMax<uint64_t>(53) == 9007199254740991LL);
+    CHECK(unsignedMax<uint64_t>(54) == 18014398509481983LL);
+    CHECK(unsignedMax<uint64_t>(55) == 36028797018963967LL);
+    CHECK(unsignedMax<uint64_t>(56) == 72057594037927935LL);
+    CHECK(unsignedMax<uint64_t>(57) == 144115188075855871LL);
+    CHECK(unsignedMax<uint64_t>(58) == 288230376151711743LL);
+    CHECK(unsignedMax<uint64_t>(59) == 576460752303423487LL);
+    CHECK(unsignedMax<uint64_t>(60) == 1152921504606846975LL);
+    CHECK(unsignedMax<uint64_t>(61) == 2305843009213693951LL);
+    CHECK(unsignedMax<uint64_t>(62) == 4611686018427387903LL);
+    CHECK(unsignedMax<uint64_t>(63) == 9223372036854775807LL);
+    CHECK(unsignedMax<uint64_t>(64) == 18446744073709551615LL);
 }
 
 template<class T, size_t Bits>
