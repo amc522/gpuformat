@@ -141,6 +141,18 @@ namespace gpufmt {
         DestinationTooSmall,
     };
 
+    enum class SampleType {
+        Int32,
+        UInt32,
+        Float,
+#ifndef GF_EXCLUDE_64BIT_FORMATS
+        Int64,
+        UInt64,
+        Double,
+#endif
+        None,
+    };
+
     [[nodiscard]]
     inline static float linearTosRGB(float linear) noexcept {
         linear = std::clamp(linear, 0.0f, 1.0f);
