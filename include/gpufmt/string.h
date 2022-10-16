@@ -1,5 +1,6 @@
 #pragma once
 
+#include <gpufmt/definitions.h>
 #include <gpufmt/format.h>
 
 #include <string_view>
@@ -443,6 +444,59 @@ namespace gpufmt {
 #endif //GF_EXCLUDE_COMPRESSED_FORMATS
         default:
             return "UNDEFINED";
+        }
+    }
+
+    [[nodiscard]]
+    constexpr std::string_view toString(gpufmt::WriteError error) {
+        switch (error)
+        {
+        case gpufmt::WriteError::None:
+            return "None";
+        case gpufmt::WriteError::FormatNotWriteable:
+            return "FormatNotWriteable";
+        case gpufmt::WriteError::DestinationTooSmall:
+            return "DestinationTooSmall";
+        default:
+            return "Unknown WriteError";
+        }
+    }
+
+    [[nodiscard]]
+    constexpr std::string_view toString(gpufmt::BlockSampleError error) {
+        switch (error)
+        {
+        case gpufmt::BlockSampleError::None:
+            return "None";
+        case gpufmt::BlockSampleError::SourceTooSmall:
+            return "SourceTooSmall";
+        case gpufmt::BlockSampleError::DestinationTooSmall:
+            return "DestinationTooSmall";
+        case gpufmt::BlockSampleError::DepthStencilUnsupported:
+            return "DepthStencilUnsupported";
+        case gpufmt::BlockSampleError::InvalidFormat:
+            return "InvalidFormat";
+        case gpufmt::BlockSampleError::BloxelOutOfRange:
+            return "BloxelOutOfRange";
+        default:
+            return "Unknown BlockSampleError";
+        }
+    }
+
+    [[nodiscard]]
+    constexpr std::string_view toString(gpufmt::Channel channel) {
+        switch(channel)
+        {
+        case gpufmt::Channel::Red:
+            return "Red";
+        case gpufmt::Channel::Green:
+            return "Green";
+        case gpufmt::Channel::Blue:
+            return "Blue";
+        case gpufmt::Channel::Alpha:
+            return "Alpha";
+        default:
+            return "Unknown Channel";
         }
     }
 }
