@@ -1,6 +1,7 @@
 #include <gpufmt/sample.h>
-#include <gpufmt/traits.h>
+#include <gpufmt/limits.h>
 #include <gpufmt/storage.h>
+#include <gpufmt/traits.h>
 
 #include <iterator>
 
@@ -13,11 +14,16 @@ namespace gpufmt {
 
             [[nodiscard]]
             constexpr std::pair<gpufmt::SampleVariant, gpufmt::SampleVariant> operator()() const noexcept {
-                const auto lowest = FormatLimits<FormatV>::lowest();
-                const auto maximum = FormatLimits<FormatV>::max();
-                
-                const Traits::WideSampleType lowestVec{ lowest, lowest, lowest, lowest };
-                const Traits::WideSampleType maxVec{ maximum, maximum, maximum, maximum };
+                const Traits::WideSampleType lowestVec{ FormatLimits<FormatV>::lowest(Channel::Red),
+                                                        FormatLimits<FormatV>::lowest(Channel::Green),
+                                                        FormatLimits<FormatV>::lowest(Channel::Blue),
+                                                        FormatLimits<FormatV>::lowest(Channel::Alpha) };
+
+                const Traits::WideSampleType maxVec{ FormatLimits<FormatV>::max(Channel::Red),
+                                                     FormatLimits<FormatV>::max(Channel::Green),
+                                                     FormatLimits<FormatV>::max(Channel::Blue),
+                                                     FormatLimits<FormatV>::max(Channel::Alpha) };
+
                 return std::make_pair(lowestVec, maxVec);
             }
         };
@@ -243,7 +249,7 @@ namespace gpufmt {
                         return BlockSampleError::BloxelOutOfRange;
                     }
 
-                    gpufmt::span<typename Traits::WideSampleType, Traits::BlockTexelCount> wideSamplesOut(reinterpret_cast<typename Traits::WideSampleType *>(byteStream.data()), byteStream.size_bytes() / Traits::WideSampleByteSize);
+                    gpufmt::span<typename Traits::WideSampleType, Traits::BlockTexelCount> wideSamplesOut(reinterpret_cast<typename Traits::WideSampleType *>(byteStream.data()), Traits::BlockTexelCount);
                     
                     Storage::loadBlock(blockSpan[blockIndex], wideSamplesOut);
 

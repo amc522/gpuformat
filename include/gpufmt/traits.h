@@ -8524,56 +8524,6 @@ namespace gpufmt {
 #endif //GF_EXCLUDE_PVRTC_COMPRESSED_FORMATS
 #endif //GF_EXCLUDE_COMPRESSED_FORMATS
 
-    template<Format FormatV>
-    class FormatLimits {
-    public:
-        using Traits = FormatTraits<FormatV>;
-
-        [[nodiscard]]
-        static constexpr typename Traits::ValueType lowest() noexcept {
-            if constexpr(Traits::info.normalized) {
-                if constexpr(Traits::info.isSigned) {
-                    return -1.0f;
-                } else {
-                    return 0.0f;
-                }
-            } else if constexpr(Traits::info.floatingPoint && (sizeof(Traits::BlockType) / Traits::ComponentCount) == 2u) {
-                // half
-                return -65504.0f;
-            } else {
-                return std::numeric_limits<Traits::ValueType>::lowest();
-            }
-        }
-
-        [[nodiscard]]
-        static constexpr typename Traits::ValueType max() noexcept {
-            if constexpr(Traits::info.normalized) {
-                return 1.0f;
-            } else if constexpr(Traits::info.floatingPoint && (sizeof(Traits::BlockType) / Traits::ComponentCount) == 2u) {
-                // half
-                return 65504.0f;
-            } else {
-                return std::numeric_limits<Traits::ValueType>::max();
-            }
-        }
-    };
-
-    template<>
-    class FormatLimits<gpufmt::Format::E5B9G9R9_UFLOAT_PACK32> {
-    public:
-        using Traits = FormatTraits<gpufmt::Format::E5B9G9R9_UFLOAT_PACK32>;
-
-        [[nodiscard]]
-        static constexpr Traits::ValueType lowest() noexcept {
-            return 0.0f;
-        }
-
-        [[nodiscard]]
-        static constexpr Traits::ValueType max() noexcept {
-            return 65408.0f;
-        }
-    };
-
     namespace internal {
         template<Format FormatValue>
         class GetFormatInfoHelper {
