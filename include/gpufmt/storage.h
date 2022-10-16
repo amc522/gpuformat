@@ -1152,8 +1152,7 @@ namespace gpufmt {
         }
 
         static void loadBlock(Traits::BlockType value, Traits::WideSampleType &sample) noexcept {
-            glm::vec3 unpackedSample = glm::unpackF3x9_E1x5(value);
-            sample.a = 1.0f;
+            sample = glm::vec4(glm::unpackF3x9_E1x5(value), 1.0f);
         }
 
         //narrow store
