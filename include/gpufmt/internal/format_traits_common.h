@@ -117,15 +117,20 @@ namespace gpufmt {
     };
 
     template<class T>
-    class ChannelMask {
-    public:
+    struct ChannelBitMask {
         static_assert(std::is_integral_v<T>);
         static_assert(std::is_unsigned_v<T>);
 
-        constexpr ChannelMask(uint32_t mask) noexcept
+        constexpr ChannelBitMask(uint32_t mask) noexcept
             : mask{ mask }
             , width(internal::bitCount(mask))
             , offset(internal::leadingZeroes(mask))
+        {}
+        
+        constexpr ChannelBitMask(uint8_t width, uint8_t offset) noexcept
+            : mask(0)
+            , width(width)
+            , offset(offset)
         {}
 
         uint32_t mask;
@@ -157,11 +162,11 @@ namespace gpufmt {
         gpufmt::Format decompressedFormat = gpufmt::Format::UNDEFINED;
         gpufmt::Format decompressedFormatAlt = gpufmt::Format::UNDEFINED;
         gpufmt::GraphicsApi supportedApis = gpufmt::GraphicsApi::None;
-        gpufmt::Channels channels = gpufmt::Channels::None;
-        gpufmt::ChannelMask<uint32_t> redBitMask{ 0u };
-        gpufmt::ChannelMask<uint32_t> greenBitMask{ 0u };
-        gpufmt::ChannelMask<uint32_t> blueBitMask{ 0u };
-        gpufmt::ChannelMask<uint32_t> alphaBitMask{ 0u };
+        gpufmt::ChannelMask channels = gpufmt::ChannelMask::None;
+        gpufmt::ChannelBitMask<uint32_t> redBitMask{ 0u };
+        gpufmt::ChannelBitMask<uint32_t> greenBitMask{ 0u };
+        gpufmt::ChannelBitMask<uint32_t> blueBitMask{ 0u };
+        gpufmt::ChannelBitMask<uint32_t> alphaBitMask{ 0u };
         uint8_t redIndex{ 255u };
         uint8_t greenIndex{ 255u };
         uint8_t blueIndex{ 255u };
@@ -172,6 +177,23 @@ namespace gpufmt {
 
         [[nodiscard]]
         constexpr bool isCompressed() const noexcept { return compression != gpufmt::CompressionType::None; }
+
+        [[nodiscard]]
+        constexpr gpufmt::ChannelBitMask<uint32_t> channelBitMask(Channel channel) const noexcept {
+            switch (channel)
+            {
+            case gpufmt::Channel::Red:
+                return redBitMask;
+            case gpufmt::Channel::Green:
+                return greenBitMask;
+            case gpufmt::Channel::Blue:
+                return blueBitMask;
+            case gpufmt::Channel::Alpha:
+                return alphaBitMask;
+            default:
+                return {0};
+            }
+        }
     };
 
     template<gpufmt::Format>

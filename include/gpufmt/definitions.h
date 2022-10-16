@@ -82,7 +82,14 @@ namespace gpufmt {
         Vulkan = 1 << 3,
     };
 
-    enum class Channels : uint32_t {
+    enum class Channel : uint32_t {
+        Red,
+        Green,
+        Blue,
+        Alpha
+    };
+
+    enum class ChannelMask : uint32_t {
         None = 0,
         Red = 1 << 0,
         Green = 1 << 1,
@@ -95,6 +102,22 @@ namespace gpufmt {
         RGBA = Red | Green | Blue | Alpha,
         DepthStencil = Depth | Stencil
     };
+
+    [[nodiscard]] constexpr ChannelMask channelToChannelMask(Channel channel) noexcept {
+        switch (channel)
+        {
+        case gpufmt::Channel::Red:
+            return ChannelMask::Red;
+        case gpufmt::Channel::Green:
+            return ChannelMask::Green;
+        case gpufmt::Channel::Blue:
+            return ChannelMask::Blue;
+        case gpufmt::Channel::Alpha:
+            return ChannelMask::Alpha;
+        default:
+            return ChannelMask::None;
+        }
+    }
 
     enum class BlockSampleError {
         None,
@@ -150,4 +173,11 @@ namespace gpufmt {
 }
 
 GPUFORMAT_ENUM_BITWISE_OPERATORS(gpufmt::GraphicsApi)
-GPUFORMAT_ENUM_BITWISE_OPERATORS(gpufmt::Channels)
+GPUFORMAT_ENUM_BITWISE_OPERATORS(gpufmt::ChannelMask)
+
+namespace gpufmt {
+    [[nodiscard]] constexpr bool testChannelInMask(ChannelMask mask, Channel value) noexcept {
+        const ChannelMask valueMask = channelToChannelMask(value);
+        return (mask & valueMask) == valueMask;
+    }
+}
