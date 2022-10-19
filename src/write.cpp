@@ -1,9 +1,8 @@
-#include "..\include\gpufmt\write.h"
 #include <gpufmt/write.h>
+#include <gpufmt/info.h>
 #include <gpufmt/storage.h>
 #include <gpufmt/traits.h>
 #include <gpufmt/visit.h>
-
 #include <vector>
 
 namespace gpufmt {

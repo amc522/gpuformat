@@ -1,6 +1,6 @@
 #include <gpufmt/dxgi.h>
+#include <gpufmt/info.h>
 #include <gpufmt/string.h>
-#include <gpufmt/traits.h>
 #include <gpufmt/utility.h>
 #include <catch.hpp>
 

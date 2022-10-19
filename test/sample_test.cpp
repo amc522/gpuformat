@@ -1,9 +1,7 @@
-#include <gpufmt/decompress.h>
+#include <gpufmt/info.h>
 #include <gpufmt/limits.h>
 #include <gpufmt/sample.h>
-#include <gpufmt/storage.h>
 #include <gpufmt/string.h>
-#include <gpufmt/traits.h>
 #include <gpufmt/utility.h>
 #include <gpufmt/write.h>
 
