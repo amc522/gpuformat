@@ -155,7 +155,8 @@ typedef enum DXGI_FORMAT
 // |15|14|13|12|11|10|09|08|07|06|05|04|03|02|01|00| Bits
 // |A3|A2|A1|A0|R3|R2|R1|R0|G3|G2|G1|G0|B3|B2|B1|B0| Texel data
 
-namespace gpufmt::dxgi {
+namespace gpufmt {
+namespace dxgi {
     struct FormatConversion {
         std::optional<DXGI_FORMAT> exact;
         std::optional<DXGI_FORMAT> closest;
@@ -1770,11 +1771,11 @@ namespace gpufmt::dxgi {
             return DXGI_FORMAT_UNKNOWN;
         }
     }
-}
+} // namespace dxgi
 
 [[nodiscard]]
 constexpr std::string_view toString(DXGI_FORMAT format) noexcept {
-    switch(format)
+    switch (format)
     {
     case DXGI_FORMAT_UNKNOWN:
         return "DXGI_FORMAT_UNKNOWN";
@@ -2020,3 +2021,4 @@ constexpr std::string_view toString(DXGI_FORMAT format) noexcept {
         return "DXGI_FORMAT_UNKNOWN";
     }
 }
+} // namespace gpufmt

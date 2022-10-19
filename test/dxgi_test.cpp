@@ -17,7 +17,7 @@ TEST_CASE("DXGI_FORMAT exact match symmetric conversion") {
         if(retranslatedFormat.has_value()) {
             CHECK(format == retranslatedFormat.value());
         } else {
-            FAIL_CHECK("gpufmt::Format: " << toString(format) << " DXGI_FORMAT: " << toString(dxgiFormatConversion.exact.value()));
+            FAIL_CHECK("gpufmt::Format: " << gpufmt::toString(format) << " DXGI_FORMAT: " << gpufmt::toString(dxgiFormatConversion.exact.value()));
         }
     }
 }
@@ -33,7 +33,7 @@ TEST_CASE("DXGI_FORMAT closest match is valid") {
         std::optional<gpufmt::Format> closestFormat = gpufmt::dxgi::translateFormat(dxgiFormatConversion.closest.value());
 
         if(!closestFormat) {
-            FAIL_CHECK(toString(format) << " closest match was " << toString(dxgiFormatConversion.closest.value()) << ", which cannot be represented by gpufmt::Format.");
+            FAIL_CHECK(gpufmt::toString(format) << " closest match was " << gpufmt::toString(dxgiFormatConversion.closest.value()) << ", which cannot be represented by gpufmt::Format.");
         }
     }
 }
@@ -64,7 +64,7 @@ TEST_CASE("FormatTraits<> with DirectX11/12 must have gpufmt::Format that transl
             gpufmt::dxgi::FormatConversion conversion = gpufmt::dxgi::translateFormat(format);
 
             if(!conversion.exact) {
-                FAIL_CHECK("gpufmt::Format::" << toString(format) << " has DirectX11 or DirectX12 as a supported api, bit there is no exact translation from " << toString(format) << " to a DXGI_FORMAT.");
+                FAIL_CHECK("gpufmt::Format::" << gpufmt::toString(format) << " has DirectX11 or DirectX12 as a supported api, bit there is no exact translation from " << gpufmt::toString(format) << " to a DXGI_FORMAT.");
             }
         }
     }
@@ -83,7 +83,7 @@ TEST_CASE("DXGI_FORMAT with matching gpufmt::Format is in supportedApis of the c
         if((info.supportedApis & gpufmt::GraphicsApi::DirectX11) == gpufmt::GraphicsApi::None ||
             (info.supportedApis & gpufmt::GraphicsApi::DirectX12) == gpufmt::GraphicsApi::None)
         {
-            FAIL_CHECK(dxgiFormat << " translates to gpufmt::Format::" << toString(gpuFormat.value()) << " which does not list DirectX11 or DirectX12 as a supported api in FormatTraits.");
+            FAIL_CHECK(dxgiFormat << " translates to gpufmt::Format::" << gpufmt::toString(gpuFormat.value()) << " which does not list DirectX11 or DirectX12 as a supported api in FormatTraits.");
         }
     }
 }
