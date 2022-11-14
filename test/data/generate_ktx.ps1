@@ -131,12 +131,16 @@ foreach( $local:format in $local:uncompressedFormats ) {
 }
 
 $local:pvrtcCompressedFormats = @(
-"PVRTC1_2",
-"PVRTC1_4",
-"PVRTC1_2_RGB",
-"PVRTC1_4_RGB",
-"PVRTC2_2",
-"PVRTC2_4"
+"PVRTCI_2BPP_RGB",
+"PVRTCI_2BPP_RGBA",
+"PVRTCI_4BPP_RGB",
+"PVRTCI_4BPP_RGBA",
+"PVRTCI_HDR_6BPP",
+"PVRTCI_HDR_8BPP",
+"PVRTCII_2BPP",
+"PVRTCII_4BPP",
+"PVRTCII_HDR_6BPP",
+"PVRTCII_HDR_8BPP"
 )
 
 foreach( $local:format in $local:pvrtcCompressedFormats ) {
@@ -181,7 +185,11 @@ $local:miscCompressedFormats = @(
 "BC1",
 "BC2",
 "BC3",
-"RGBE9995"
+"BC4",
+"BC5",
+"DXT2",
+"DXT4",
+"SHAREDEXPONENTR9G9B9E5"
 )
 
 foreach( $local:format in $local:miscCompressedFormats ) {
