@@ -1,0 +1,96 @@
+cmake_minimum_required(VERSION 3.7...3.25 FATAL_ERROR)
+
+option(GPUFMT_TEST "Generate the gpuformat test executable [ON, OFF]" OFF)
+include(CMakePrintHelpers)
+
+if(${CMAKE_VERSION} VERSION_LESS 3.12)
+    cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
+endif()
+
+set(VCPKG_MANIFEST_MODE ON)
+
+project(gpuformat VERSION 1.0 
+                  LANGUAGES CXX)
+
+find_path(GLM_INCLUDE_DIR NAMES glm/glm.hpp)
+
+add_library(gpufmt STATIC include/gpufmt/config.h
+                          include/gpufmt/decompress.h
+                          include/gpufmt/definitions.h
+                          include/gpufmt/dxgi.h
+                          include/gpufmt/format.h
+                          include/gpufmt/info.h
+                          include/gpufmt/limits.h
+                          include/gpufmt/opengl.h
+                          include/gpufmt/sample.h
+                          include/gpufmt/storage.h
+                          include/gpufmt/string.h
+                          include/gpufmt/traits.h
+                          include/gpufmt/utility.h
+                          include/gpufmt/visit.h
+                          include/gpufmt/vulkan.h
+                          include/gpufmt/write.h
+                          include/gpufmt/internal/format_packing.h
+                          include/gpufmt/internal/format_traits_common.h
+                          include/gpufmt/internal/packing_common.h
+                          include/gpufmt/internal/pvrtc.h
+                          include/gpufmt/internal/sample_variant.h
+                          include/gpufmt/internal/astc.h
+                          include/gpufmt/internal/bc.h
+                          include/gpufmt/internal/bit_packing.h
+                          include/gpufmt/internal/byte_packing.h
+                          include/gpufmt/internal/etc.h
+                          src/bc.cpp
+                          src/decompress.cpp
+                          src/etc.cpp
+                          src/info.cpp
+                          src/limits.cpp
+                          src/pvrtc.cpp
+                          src/sample.cpp
+                          src/write.cpp
+                          src/astc.cpp
+                          thirdparty/astc_dec/astc_dec/astc_decomp.cpp
+                          thirdparty/astc_dec/astc_dec/astc_decomp.h
+                          thirdparty/DirectXTex/DirectXTex/BC.h
+                          thirdparty/DirectXTex/DirectXTex/BC6HBC7.cpp
+                          thirdparty/DirectXTex/DirectXTex/DirectXTexStub.h
+                          thirdparty/gl/gl/glcorearb.h
+                          thirdparty/gl/gl/glext.h
+                          thirdparty/khr/khr/khrplatform.h
+                          thirdparty/PowerVR_SDK/PowerVR/PVRTDecompress.cpp
+                          thirdparty/PowerVR_SDK/PowerVR/PVRTDecompress.h
+                          thirdparty/swiftshader/switftshader/ETC_Decoder.cpp
+                          thirdparty/swiftshader/switftshader/ETC_Decoder.hpp)
+
+target_include_directories(gpufmt PUBLIC include
+                                         thirdparty/astc_dec 
+                                         thirdparty/DirectXTex
+                                         thirdparty/gl
+                                         thirdparty/khr
+                                         thirdparty/PowerVR_SDK
+                                         thirdparty/swiftshader
+                                         ${GLM_INCLUDE_DIR})
+
+target_compile_features(gpufmt PUBLIC cxx_std_20)
+
+if(GPUFMT_TEST)
+    find_package(Catch2 CONFIG REQUIRED)
+    
+    add_executable(gpufmt_test test/bit_packing_test.cpp
+                               test/dxgi_test.cpp
+                               test/packing_common_test.cpp
+                               test/sample_test.cpp
+                               test/test.cpp
+                               test/traits_test.cpp
+                               test/write_test.cpp)
+
+    if(WIN32)
+        target_compile_definitions(gpufmt_test PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+    endif(WIN32)
+
+    target_link_libraries(gpufmt_test PRIVATE gpufmt
+                                              Catch2::Catch2
+                                              Catch2::Catch2WithMain)
+
+    target_compile_features(gpufmt PUBLIC cxx_std_20)
+endif(GPUFMT_TEST)
