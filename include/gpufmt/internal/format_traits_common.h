@@ -138,6 +138,8 @@ namespace gpufmt {
         uint8_t offset;
     };
 
+    constexpr uint8_t kInvalidChannelIndex = 255u;
+
     struct FormatInfo {
         uint32_t blockByteSize = 0u;
         Extent blockExtent;
@@ -167,10 +169,10 @@ namespace gpufmt {
         gpufmt::ChannelBitMask<uint32_t> greenBitMask{ 0u };
         gpufmt::ChannelBitMask<uint32_t> blueBitMask{ 0u };
         gpufmt::ChannelBitMask<uint32_t> alphaBitMask{ 0u };
-        uint8_t redIndex{ 255u };
-        uint8_t greenIndex{ 255u };
-        uint8_t blueIndex{ 255u };
-        uint8_t alphaIndex{ 255u };
+        uint8_t redIndex{ kInvalidChannelIndex };
+        uint8_t greenIndex{ kInvalidChannelIndex };
+        uint8_t blueIndex{ kInvalidChannelIndex };
+        uint8_t alphaIndex{ kInvalidChannelIndex };
         bool writeable = false;
         bool readable = false;
         bool decompressible = false;
