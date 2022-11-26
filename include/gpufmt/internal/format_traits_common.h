@@ -196,6 +196,11 @@ namespace gpufmt {
                 return {0};
             }
         }
+
+        [[nodiscard]]
+        constexpr bool hasChannel(Channel channel) const noexcept {
+            return testChannelInMask(channels, channel);
+        }
     };
 
     template<gpufmt::Format>
