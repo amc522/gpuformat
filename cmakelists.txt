@@ -15,6 +15,7 @@ project(gpuformat VERSION 1.0
 find_path(GLM_INCLUDE_DIR NAMES glm/glm.hpp)
 
 add_library(gpufmt STATIC include/gpufmt/config.h
+                          include/gpufmt/convert.h
                           include/gpufmt/decompress.h
                           include/gpufmt/definitions.h
                           include/gpufmt/dxgi.h
