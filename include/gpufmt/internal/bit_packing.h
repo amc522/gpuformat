@@ -33,6 +33,22 @@ namespace gpufmt::internal {
         return (static_cast<T>(std::round(clampedValue * scaleFactor)) & mask) << Offset;
     }
 
+    template<class T, size_t BitCount>
+    [[nodiscard]]
+    constexpr T packBitsUNorm(float value, T offset) noexcept {
+        static_assert(BitCount <= sizeof(T) * 8);
+        static_assert(BitCount > 0);
+        static_assert(std::is_unsigned_v<T>);
+
+        assert(offset < sizeof(T) * 8);
+        assert(BitCount + offset <= sizeof(T) * 8);
+
+        static constexpr float scaleFactor = scaleFactorUNorm<BitCount>();
+        static constexpr T mask = bitMask<T, BitCount>();
+        const float clampedValue = std::clamp(value, 0.0f, 1.0f);
+        return (static_cast<T>(std::round(clampedValue * scaleFactor)) & mask) << offset;
+    }
+
     template<class T, size_t BitCount, size_t Offset>
     [[nodiscard]]
     constexpr T packBitsSNorm(float value) noexcept {
@@ -132,6 +148,21 @@ namespace gpufmt::internal {
         static constexpr float scaleFactor = scaleFactorUNorm<BitCount>();
         static constexpr T mask = bitMask<T, BitCount>();
         return ((value >> Offset) & mask) / scaleFactor;
+    }
+
+    template<class T, size_t BitCount>
+    [[nodiscard]]
+    constexpr float unpackBitsUNorm(T value, T offset) noexcept {
+        static_assert(std::is_unsigned_v<T>);
+        static_assert(BitCount <= sizeof(T) * 8);
+        static_assert(BitCount > 0);
+        
+        assert(offset < sizeof(T) * 8);
+        assert((BitCount + offset) <= sizeof(T) * 8);
+
+        static constexpr float scaleFactor = scaleFactorUNorm<BitCount>();
+        static constexpr T mask = bitMask<T, BitCount>();
+        return ((value >> offset) & mask) / scaleFactor;
     }
 
     template<class T, size_t BitCount, size_t Offset>
