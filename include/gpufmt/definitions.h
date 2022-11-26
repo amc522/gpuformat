@@ -154,7 +154,7 @@ namespace gpufmt {
     };
 
     [[nodiscard]]
-    inline static float linearTosRGB(float linear) noexcept {
+    constexpr float linearTosRGB(float linear) noexcept {
         linear = std::clamp(linear, 0.0f, 1.0f);
         return (linear <= 0.0031308) ?
             linear * 12.92f :
@@ -162,7 +162,7 @@ namespace gpufmt {
     }
 
     [[nodiscard]]
-    inline static float sRGBToLinear(float sRGB) noexcept {
+    constexpr float sRGBToLinear(float sRGB) noexcept {
         sRGB = std::clamp(sRGB, 0.0f, 1.0f);
         return (sRGB <= 0.04045f) ?
             sRGB / 12.92f :
@@ -170,14 +170,14 @@ namespace gpufmt {
     }
 
     [[nodiscard]]
-    inline static glm::vec3 linearTosRGB(const glm::vec3 &linear) noexcept {
+    constexpr glm::vec3 linearTosRGB(const glm::vec3 &linear) noexcept {
         return glm::vec3(linearTosRGB(linear.r),
                          linearTosRGB(linear.g),
                          linearTosRGB(linear.b));
     }
 
     [[nodiscard]]
-    inline static glm::vec3 sRGBToLinear(const glm::vec3 sRGB) noexcept {
+    constexpr glm::vec3 sRGBToLinear(const glm::vec3 sRGB) noexcept {
         return glm::vec3(sRGBToLinear(sRGB.r),
                          sRGBToLinear(sRGB.g),
                          sRGBToLinear(sRGB.b));
